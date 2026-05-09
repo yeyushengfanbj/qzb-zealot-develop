@@ -1,0 +1,25 @@
+- content_for :title do
+  = @title
+
+- content_for :section_title do
+  = @title
+
+- content_for :section_rightpanel do
+  .d-join
+    = button_link_to '', teardowns_path, 'list-alt', class: 'd-join-item d-btn d-tooltip', \
+      base_fa: 'fa-regular', data: { tip: t('links.back_to_list')}
+    - if teardown_owner?(@metadata)
+      = button_link_to '', teardown_path(@metadata), 'trash-alt', \
+        class: 'd-join-item d-btn text-error d-tooltip', \
+        data: { tip: t('modals.buttons.destroy'), turbo_method: :delete, turbo_confirm: t('modals.confirm.body') }
+
+- if @metadata.release.present?
+  ruby:
+    link = link_to(@metadata.release.app_name, friendly_channel_release_path(@metadata.release.channel, @metadata.release))
+
+  .d-alert.d-alert-info.mb-4
+    p
+      i.fa-brands.fa-adn.icon
+      = raw t('.related_body', link: link)
+
+== render @metadata.platform.to_s.downcase

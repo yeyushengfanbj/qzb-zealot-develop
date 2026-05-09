@@ -1,0 +1,8 @@
+- content_for :title do
+  = t('.title')
+
+- content_for :section_title do
+  = t('.title')
+
+.w-full class="h-[calc(100vh-10rem)]"
+  iframe.w-full.h-full src="#{admin_jobs_path(locale: @goodjob_locale)}"

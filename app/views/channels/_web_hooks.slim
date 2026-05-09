@@ -1,0 +1,10 @@
+.card.mb-3
+  .card-header
+    h3.card-title
+      i.fa-solid.fa-anchor
+      = t('web_hooks.title')
+  .card-body class="p-0"
+    .d-tabs.d-tabs-box
+      == render 'web_hooks/tab_enabled', channel: channel
+      == render 'web_hooks/tab_shared', channel: channel
+      == render 'web_hooks/tab_new', channel: channel

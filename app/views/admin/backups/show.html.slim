@@ -1,0 +1,12 @@
+- content_for :title do
+  = t('.title', key: @backup.key)
+
+- content_for :section_title do
+  = t('.title', key: @backup.key)
+
+- content_for :section_rightpanel do
+  == render 'action_buttons', backup: @backup
+
+.space-y-5 
+  == render "job_completed", backup: @backup, backup_files: @backup_files
+  == render "job_inprocess", backup: @backup, performing_jobs: @performing_jobs

@@ -1,0 +1,17 @@
+- content_for :title do
+  = @title
+
+- content_for :section_title do
+  = @title
+
+- content_for :section_rightpanel do
+  = button_link_to '', teardowns_path, 'list-alt', class: 'd-btn d-tooltip', \
+    base_fa: 'fa-regular', data: { tip: t('links.back_to_list')}
+
+.card
+  = simple_form_for(:teardown, url: teardowns_path) do |f|
+    .card-body
+      = f.error_notification
+      = f.input :file, as: :file
+    .card-footer
+      = f.button :submit

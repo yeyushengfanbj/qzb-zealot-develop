@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:14-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: zealot
+    volumes:
+      - zealot-postgres:/var/lib/postgresql/data
+
+  zealot:
+    image: ${ZEALOT_IMAGE:-ghcr.io/tryzealot/zealot:nightly}
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    env_file:
+      - .env.local
+    ports:
+      - "8080:80"
+    volumes:
+      - zealot-uploads:/app/public/uploads
+      - zealot-backup:/app/public/backup
+
+volumes:
+  zealot-postgres:
+  zealot-uploads:
+  zealot-backup:

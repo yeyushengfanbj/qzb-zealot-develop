@@ -1,0 +1,18 @@
+= turbo_frame_tag channel, class: 'grid gap-4 grid-cols-1 md:grid-cols-12' do
+  div class="md:col-span-8 space-y-6"
+    == render 'mobile_menu', app: app, scheme: scheme, channel: channel
+    == render 'activity', app: app, scheme: scheme, channel: channel, releases: releases
+    == render 'metadata', app: app, scheme: scheme, channel: channel
+
+    - if current_user&.manage?(app: app)
+      == render 'web_hooks', channel: channel
+
+  div class="md:col-span-4 space-y-6"
+    == render 'releases/upload_button', app: app, channel: channel
+    == render 'schemes', app: app, scheme: scheme, channel: channel
+    == render 'channels', app: app, scheme: scheme, channel: channel
+    == render 'versions', channel: channel
+
+    - if user_signed_in_or_guest_mode?
+      = button_link_to t('channels.show.view_app'), app_path(app), 'cube', \
+        class: 'd-btn w-full', data: { turbo_frame: '_top' }

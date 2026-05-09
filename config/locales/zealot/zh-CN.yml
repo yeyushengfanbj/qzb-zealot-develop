@@ -1,0 +1,1216 @@
+zh-CN:
+  announcement: "7.0 版本开启全新主题，还有更多新功能正在开发中！"
+  toolbox_section: 工具箱
+  admin_section: 管理区域
+  monitors_section: 监控区域
+  user_profile: 用户详情
+  log_out: 用户登出
+  log_in: 登录
+  donate: 捐赠
+  intro:
+    title: 应用托管竟然如此简单、全平台 App 应用分发系统
+    description: 持续集成一切跟应用有关事情，接入 CI 系统一切自动化处理，企业多年实战经验，独立部署提供企业打包分发流程、上传应用全套流程方案
+  links:
+    back_to_list: 返回列表
+  admin:
+    users:
+      title: 用户
+      new:
+        title: 创建用户
+      index:
+        title: :'admin.users.title'
+        new_user: :'admin.users.new.title'
+        number: "#"
+        nickname: 用户昵称
+        email: 邮箱
+        role: 权限
+        status: 状态
+        last_login_time: 最后登录时间
+        activated: 已激活
+        locked: 已停用
+        inactive: 未激活
+        never_logged_in: 从未登录
+        destroy_user: 删除
+        destroy_user_confirm: 你确定要删除【%{user}】用户？
+      edit:
+        title: 修改用户
+        active_link: 激活链接
+        active_link_tip: 若发送邮件设置错误或邀请用户没有收到激活邮件
+        resend: 重发激活邮件
+        profile: 个人信息
+        collaborators: 应用成员
+        api_token: API 密钥
+        lock_user: 停用用户
+        unlock_user: 启用用户
+        destroy_user: 删除用户
+      lock:
+        message: "%{user}用户已变更为停用状态"
+      unlock:
+        message: "%{user}用户已变更为启用状态"
+      resend_confirmation:
+        message: "已重新发送确认邮件至%{user}用户"
+    web_hooks:
+      title: 网络钩子
+      index:
+        title: :'admin.web_hooks.title'
+        links: 通知链接
+        number: "#"
+        url: URL
+        channels: 渠道列表
+        not_found: 没有发现网络钩子
+        create_web_hook_from_channel_inside: 这里仅作已添加网络钩子的展示，添加需要从应用渠道详情中进行操作
+      show:
+        title: 网络钩子详情
+      new:
+        title: 新建网络钩子
+      edit:
+        title: 编辑网络钩子
+      messages:
+        success:
+          enable: 网络钩子已经成功启用
+          disable: 网络钩子已经取消启用
+          test: 网络钩子请求测试已发送
+    apple_keys:
+      title: 苹果开发者
+      new:
+        title: 添加开发者
+      index:
+        title: :'admin.apple_keys.title'
+        teams: 团队
+        number: "#"
+        team_name: 团队名称
+        team_id: 团队标识符
+        created_at: 创建时间
+        new_apple_key: :'admin.apple_keys.new.title'
+        not_found:
+          title: 没有发现任何苹果开发者
+          body_html: 点击右上角的 <i class="fa-regular fa-plus-square"></i> 新增
+      show:
+        title: :'admin.apple_keys.title'
+        team_metadata: 团队信息
+        key_metadata: 密钥信息
+        devices: 设备列表
+        sync_now: 现在同步
+        last_synced_at: 上次同步时间为 %{time}前
+        never_sync: 尚未同步
+        download_private_key: 下载私钥证书
+        udid: :'udid.show.udid'
+        udid_name: :'udid.show.name'
+        udid_platform: :'udid.show.platform'
+        udid_model: :'udid.show.model'
+        udid_related_apps: 关联应用
+        udid_created_at: 创建时间
+      create:
+        successful: 创建成功并成功同步开发者的相关信息
+    apple_teams:
+      edit:
+        title: 更新苹果开发者名称
+    settings:
+      title: 系统设置
+      index:
+        title: :'admin.settings.title'
+        smtp_verify: 验证
+        smtp_verify_inprocess: 验证中
+        restart_to_apply: 需重启服务生效
+        service_restarting: 服务重启中
+        service_restarted: 应用中
+        restart_required: 重启后生效
+      update:
+        title: 编辑设置
+      edit:
+        title: 编辑设置
+      enable: 开启
+      disable: 关闭
+      validates: "条件：%{value}"
+      general: 通用配置
+      site_https: 启用 HTTPS
+      site_title: 网站标题
+      site_locale: 网站语言
+      site_domain: 网站域名
+      site_appearance: 网站外观
+      site_light_theme: 明亮主题
+      site_dark_theme: 深色主题
+      presets: 预设值
+      preset_schemes: 应用类型模板
+      preset_role: 新用户权限
+      preset_install_limited: 应用内安装限制
+      preset_install_limited_hint: 特定手机应用打开无法进行安装操作（比如：微信、钉钉等），通过设置 User Agent 关键词开启使用浏览器打开安装帮助
+      per_page: 每页返回条目数
+      max_per_page: 每页最大返回条目数
+      switch_mode: 模式开关
+      registrations_enabled: 允许用户注册
+      registrations_enabled_hint: 启用或关闭内置认证系统的用户注册功能。关闭后仅管理员可以创建新用户
+      login_enabled: 允许用户登录
+      login_enabled_hint: 启用或关闭内置认证系统的用户登录功能。关闭后仅可使用第三方认证方式登录
+      passwordless_login_enabled: 允许无密码登录
+      passwordless_login_enabled_hint: 启用或关闭内置认证系统的无密码登录功能。通过邮件发送链接在有效期内进行可以登录
+      guest_mode: 游客模式
+      demo_mode: 演示模式
+      demo_mode_hint: 开启演示模式会触发：每天定时恢复默认数据；无法编辑或删除默认管理员；隐私数据会安全化显示且无法编辑
+      third_party_auth: 第三方登录
+      ldap: LDAP
+      oidc: OpenID Connect
+      feishu: 飞书
+      gitlab: Gitlab
+      github: Github
+      google_oauth: Google OAuth
+      smtp: 邮件配置
+      mailer_default_from: 发送地址
+      mailer_default_reply_to: 回复地址
+      mailer_options: 发件服务器配置
+      analytics: 统计
+      google_analytics_id: Google 统计
+      umami_script_url: Umami 脚本 URL
+      umami_website_id: Umami 统计
+      archives: 上传文件
+      keep_uploads: 永久保存上传应用版本
+      misc: 杂项
+      show_footer_version: 显示底部版本号
+      show_footer_openapi_endpoints: 显示底部 OpenAPI 链接
+      empty_value: 空值
+      no_editable_key: 当前设置为可读，无法修改
+      reset: 恢复默认值
+    system_info:
+      title: 环境信息
+      index:
+        title: :'admin.system_info.title'
+        zealot_version: 版本号
+        vcs_ref: Git 哈希值
+        build_date: 构建日期
+        server_info: 服务器信息
+        found_new_version: "发现新版本: %{version}"
+        os_info: 操作系统
+        postgres_version: PostgreSQL 版本
+        ruby_version: Ruby 版本
+        cpu_info: CPU
+        cpu_core: "%{count} 核"
+        fail_detect_cpu: CPU 信息监测失败
+        memory_info: 内存
+        fail_detect_memory: 内存信息监测失败
+        disk_info: 磁盘
+        lauched_time: 运行时间
+        volume_mounted: 挂载信息
+        fail_detect_disk: 无法解读硬盘信息
+        system_environment: 系统变量
+        file_permissions: 文件权限
+        ruby_gems: Ruby Gems
+        logs: 日志
+        new_version: "发现新版本 "
+        dev_new_version: 发现新版本 (开发环境始终显示)
+        messages:
+          file_permissions_tip: 如果你看到上面路径有显示红色异常图标那就是表面该路径无法写入可能会造成 Zealot 无法正常使用或发生异常情况
+          path_not_exist: 路径不存在
+          path_not_writable: 路径不可写
+          path_not_readable: 路径不可读
+    backups:
+      title: 数据备份
+      index:
+        title: :'admin.backups.title'
+        new_schedule: 新备份计划
+        schedules: 备份计划
+        key: 备份名称
+        scopes: 备份范围
+        schedule: 备份频率
+        next_schedule_at: 下次备份时间
+        enabled: 启用
+        run_backup: 执行新备份
+        edit: 编辑
+        database: 数据库
+        app: "%{count} 应用"
+        not_found:
+          title: 没有发现任何备份计划
+          body_html: 点击右上角的 <i class="fa-regular fa-plus-square"></i> 生成备份文件
+      show:
+        title: "%{key}备份计划"
+        run_backup: 执行新备份
+        backup_files: 备份文件
+        filename: 文件名
+        sha256: SHA256
+        created_at: 生成时间
+        size: 大小
+        download: 下载
+        performing_jobs: 进行中的备份任务
+        backup_id: 备份 ID
+        backup_status: 备份状态
+        steps:
+          start: 任务认领
+          prepare: 数据准备中
+          dump_database: 备份数据库
+          dump_apps: 备份应用
+          pack: 生成压缩包
+          remove_old: 清理旧备份
+          cleanup: 收尾工作
+        unknown_job_status: 未知备份状态，建议删除后重试再报错请联系开发者
+        not_found:
+          title: 没有发现任何备份文件
+          body_html: 点击右上角的 <i class="fa-regular fa-play-circle"></i> 执行备份
+      new:
+        title: 新增备份
+        schedule: 定时任务
+        disable: 禁用
+        enable: 启用
+      edit:
+        title: 编辑%{key}备份计划
+      perform:
+        success: 备份任务%{key}正在后台工作中
+      destroy_archive:
+        success: 备份文件%{key}成功删除
+      cancel_job:
+        success: 备份任务%{key}成功取消
+      parse_schedule:
+        invalid_expression: 表达式无法解析
+    background_jobs:
+      title: 后台任务
+      index:
+        title: :'admin.background_jobs.title'
+    database_analytics:
+      title: 数据库分析
+      index:
+        title: :'admin.database_analytics.title'
+    logs:
+      title: 服务日志
+      index:
+        title: :'admin.logs.title'
+        loading: 日志加载中 ...
+        error_message: 日志获取失败，返回状态码：
+    services:
+      smtp_verify:
+        success: SMTP 邮件服务配置验证成功
+        smtp_method_only: 仅支持 SMTP 邮件服务验证
+        no_mailer_configuration: 没有发现 SMTP 邮件配置
+  dashboard:
+    title: 控制台
+    analytics:
+      apps: :'apps.title'
+      debug_files: :'debug_files.title'
+      teardowns: :'teardowns.title'
+      uploads: 上传次数
+      web_hooks: :'admin.web_hooks.title'
+      users: :'admin.users.title'
+      background_jobs: :'admin.background_jobs.title'
+      disk_usage: 存储空间
+    timeline:
+      title: 上传时间线
+      upload_full_version_release: 上传了新版本 %{release_version} (%{build_version})
+      upload_auto_version_release: 上传了新版本 %{version}
+      not_found: 没有任何上传，快快上传吧。
+  apps:
+    title: 应用
+    index:
+      schemes: 类型
+      channels: 渠道
+      uploads: 上传
+      created_at: 创建于 %{time}
+      searching_app: 搜索应用
+      not_found:
+        title: 没有发现任何应用或全部已归档
+        body_html: 新建应用请点击右上角的 <i class="fa-regular fa-plus-square"></i> 进行操作，查看已归档应用请点击左侧导航栏的 "已归档应用"
+    show:
+      new_scheme: 新增类型
+      edit_app: 编辑应用
+      destroy_app: 删除应用
+      archive_app: 归档应用
+      unarchive_app: 取消归档应用
+      new_channel: 新增渠道
+      edit_scheme: 编辑类型
+      destroy_scheme: 删除类型
+      edit_channel: 编辑渠道
+      destroy_channel: 删除渠道
+      retained_build: 最大版本保留数
+      disabled_new_build_callout: 已关闭新版本提示窗
+      enabled_new_build_callout: 已开启新版本提示窗
+      total_builds: 上传版本数
+      not_found_channel: 没有发现任何渠道
+      not_found_scheme:
+        title: 没有发现任何应用类型
+        body_html: |
+          <p>选择右上角的 <i class="fa-regular fa-plus-square"></i> 新增类型</p>
+          <p>创建应用类型通常是给应用进行分类，比如从研发流程来说可以分为：</p>
+          <ul>
+            <li>开发版本、内测版本、公测版本、线上版本</li>
+          </ul>
+          <p>如果应用仅提供 Android 版本，可以按照应用渠道划分为：</p>
+          <ul>
+            <li>Google Play、酷安、小米、华为、vivo、oppo、应用宝等</li>
+          </ul>
+
+      collaborators: 成员
+      new_collaborator: 添加新成员
+      username: 用户
+      role: 权限
+      it_is_you: 你的账户
+      collaborator_owner: 拥有者
+    new:
+      title: 新建应用
+    edit:
+      title: 编辑应用
+    new_owner:
+      title: 转移拥有者
+      user_hint: 转移至其他成员，你会失去该应用的所有权限！
+    archives:
+      title: 已归档应用
+      index:
+        title: :'apps.archived.title'
+        not_found:
+          title: 没有发现任何已归档应用
+          body_html: 如果应用长期不再使用且不想删除可以进行归档操作。
+    messages:
+      failture:
+        not_found_app_by_version: "没有找到应用版本: %{version}"
+        not_found_app: 没有找到应用 %{id}，跳转至应用列表
+        missing_schemes_and_channels: 没有勾选任何应用类型和渠道！
+      confirm:
+        delete_app: 确定删除【%{name}】应用和已关联的类型、渠道以及已上传的应用数据?
+        delete_app_scheme: 确定删除【%{name}】类型和渠道以及已上传的应用数据?
+        delete_app_channel: 确定删除【%{name}】渠道和已上传的应用数据?
+        delete_collaborator: 确定删除【%{name}】成员?
+        archive_app: 确认归档应用 `%{name}`，归档后应用将不再显示在应用列表中并无法上传新的应用版本？
+        unarchive_app: 确认取消归档应用 `%{name}`，取消归档后应用将移到应用列表中并开启上传新的应用版本？
+  collaborators:
+    default:
+      title: 应用成员
+    new:
+      title: 添加新成员
+      errors:
+        all_users_were_added: 所有用户已添加至当前应用成员列表
+    edit:
+      title: 编辑成员
+  schemes:
+    title: 应用类型
+    show:
+      empty_channel: 没有发现已创建的渠道，请新建一个
+    new:
+      title:
+        with_name: "%{app}新建类型"
+        without_name: 新建类型
+    edit:
+      title:
+        with_name: "%{app}编辑类型"
+        without_name: 编辑类型
+  channels:
+    title: 应用渠道
+    subtitle: "%{total_scheme} 类型 %{total_channel} 渠道"
+    show:
+      scheme: :'schemes.title'
+      channel: :'channels.title'
+      activity: 时间线
+      metadata: 渠道信息
+      device_type: 设备类型
+      slug: 唯一地址
+      password: 访问密码
+      git_url: Git 仓库地址
+      download_filename_type: 下载文件名规则
+      download_filename_type_item:
+        version_datetime: "{channel_slug}_{release_version}_{build_version}_{datetime}.{ext}"
+        original_filename: 使用上传文件的文件名
+      match_rule: 匹配模式 %{value}
+      wildmatch: (不限制上传包的包名)
+      total_releases: 上传版本
+      channel_key: 渠道 KEY
+      edit_channel: 渠道管理
+      none: 无
+      not_found: 还没有收到任何上传记录，点击右上角的 <i class="fa-regular fa-plus-square"></i> 上传应用
+      id: ID
+      build_version: 开发版本
+      git_branch: 分支
+      git_commit: 提交哈希值
+      version: 上传版本
+      release_type: 打包类型
+      uploaded_at: 上传时间
+      actions: 操作
+      major_versions: 主版本
+      release_version: 主版本号
+      total_version: 版本数量
+      empty_version: 该版本没有任何上传记录！
+      view_more: 查看更多
+      view_app: 应用详情
+    new:
+      title:
+        with_name: "%{app}新建渠道"
+        without_name: 新建渠道
+    edit:
+      title:
+        with_name: "%{app}编辑渠道"
+        without_name: 编辑渠道
+    branches:
+      index:
+        subtitle: "%{branch} 分支版本列表"
+    release_types:
+      index:
+        subtitle: "%{type} 类型版本列表"
+    versions:
+      index:
+        subtitle: 版本列表
+      show:
+        subtitle: "%{version} 主版本列表"
+    filters:
+      list:
+        delete: 删除
+        delete_all: 全部删除
+    messages:
+      errors:
+        not_found_channel: 没有找到应用渠道 %{id}，跳转至应用列表
+  releases:
+    title: 应用版本
+    sources:
+      web: 网页上传
+      api: 接口上传
+    show:
+      enter_password: 访问密码
+      app_touch_menu: 点击右上角菜单
+      app_open_in_safari: 在 Safari 中打开并安装
+      app_open_in_webbrower: 在任意浏览器中打开并安装
+      new_build_released: 发现新版本！
+      released_new_version: "%{version_link} 于%{time}发布！"
+      name: 应用
+      version: 上传版本
+      device_type: 平台
+      release_version: 构建版本
+      release_type: 打包类型
+      native_codes: 原生架构
+      multi_native_codes: 多架构
+      filesize: 文件体积
+      uploaded_at: 上传时间 %{date}
+      git_branch: Git 分支
+      git_commit: Git 提交 SHA
+      source: 上传来源
+      metadata: 更多信息
+      certificate_expired_date: 证书过期时间 %{date}
+      teardown_metadata: 解包信息
+      install: 安装
+      download: 下载
+      installing: 安装中 ...
+      installed: 重新安装
+      cert_expired: 证书过期无法安装
+      missing_file: 应用文件遗失
+      more: 更多上传
+      cannot_install_cause_of_certificate_expired: 签名证书已过期，为什么无法安装？
+      cannot_install_or_untrusted_enterprise_developer: 应用已安装到桌面，安装失败或遇到 "未受信任的企业级开发者" 错误点击这里
+      last_ten_uploads: 最近 10 次上传
+      upload_full_version_release: :'dashboard.timeline.upload_full_version_release'
+      upload_auto_version_release: :'dashboard.timeline.upload_auto_version_release'
+      changelog: 更新日志
+      devices: 测试设备
+      sync_devices_feature: 开启自动同步设备
+      apple_team_link: https://zealot.ews.im/zh-Hans/docs/user-guide/administrator/apple-team
+      qrcode: 二维码
+      scan_qrcode_with_any_supported_app: 任何支持二维码识别的 App 均可
+      major_versions: :'channels.show.major_versions'
+      view_detail: 渠道详情
+      custom_fields_invalid_json_format: 自定义字段值无法正确显示，请使用 JSON 数组，不是字符串类型。
+      app_was_archived: 应用已归档仅限只读操作
+    new:
+      title: 上传应用
+    install:
+      show:
+        not_found: 找不到应用文件，无法提供下载服务
+    messages:
+      default_changelog: |
+        没有找到更新日志，可能的原因：
+
+        - 开发者很懒没有留下更新日志😂
+        - 有不可抗拒的因素造成日志丢失👽
+      errors:
+        not_found_release_and_redirect_to_channel: 应用版本不存在或已经被移除，页面跳转至应用渠道详情
+        not_found_release_and_redirect_to_latest_release: 版本不存在或已经被移除，跳转至最新版本
+        not_found: 页面找不到
+        not_found_app: 应用不存在或已经被移除
+        not_found_release: 应用版本不存在或被移除
+        redirect_to_app_list: 跳转到应用列表
+        reidrect_channel_detal: 跳转应用渠道详情
+        deleted_manually: 可能当前版本被人工删除
+        deleted_programly: 系统开启了清理老版本功能而当前版本属于历史老版本被清理掉
+        not_found_really: 您访问的应用版本真的不存在
+        invalid_password: 密码错误，请重新输入
+        bundle_id_not_matched: "应用的包名 %{got} 和约束的包名 %{expect} 无法匹配"
+        upload_to_archived_app: "应用 %{app} 已归档，无法上传新的版本。"
+  debug_files:
+    title: 调试文件
+    index:
+      upload: 上传调试文件
+      uploaded_at: 上传于%{time}
+      empty_content: 还没有上传任何调试文件，点击右上角上传一个吧。
+      android_count: Proguard
+      ios_count: dSYM
+      not_found:
+        title: 没有发现任何调试文件！
+        body_html: 选择右上角的 <i class="fa-regular fa-plus-square"></i> 上传调试文件
+    show:
+      title: "%{app} %{device} %{version} 调试文件"
+      name: 应用名称
+      version: 编号
+      device_type: 平台
+      release_version: 版本信息
+      filename: 文件名
+      file_size: 文件大小
+      uploaded_at: 上传时间
+      missing_file: 调试文件遗失
+      download: 下载
+      reprocess: 重新解析
+      main_target: 主项目
+      arch: 架构
+      target: 名称
+      uuid: UUID
+      libraries: 库
+      files: 文件
+    device:
+      title: "%{app} %{device} 调试文件"
+      number: "#%{value}"
+      processing: 调试文件的解析工作正在后台运行中，请耐心等待 ...
+      refresh_page: 如果长时间没有发生变化，请尝试刷新本页面。多次刷新还是显示本信息请到管理员面板查看"后台任务"是否有异常。
+      reparse_required: 无法解析包名，缺失或需要重新解析
+      main_target: 主项目
+      arch: 架构
+      libraries: 库
+      file_nums: 文件数量
+      file_size: 文件大小
+    reprocess:
+      success: 调试文件已提交重新解析处理中
+    help:
+      title: 帮助中心
+      body_html: |
+        <h4 class="text-lg font-bold">什么是调试文件，如何找到它？</h4>
+        <h5>iOS</h5>
+        <p>下面以 XCode 作为 IDE 详细说明定位 dSYM 文件：</p>
+        <ul>
+          <li>打开 XCode 后点击顶部菜单 "Window" -> "Organizer"</li>
+          <li>左栏找到对应的项目并查看 "Products" 下面的 "Archivers"</li>
+          <li>右侧选择对应的构建版本点击右键 "Show in Finder" 即可 .xcarchive 目录</li>
+          <li>在该文件继续右键选择 "显示包内容" 并进入 dSYMs 目录</li>
+          <li>最后就可以找到 Target 的 dSYM 文件，最后进行压缩处理即可</li>
+        </ul>
+        <p>
+          XCode Release 编译默认会生成 dSYM 文件，而 Debug 编译默认不会生成，需要在 "Build Settings" 中的 "Build Options" 设置:
+          <code>Debug Information Format = "DWARF with dSYM File"</code>
+        </p>
+        <p>如果确认非 Debug 构建后在 XCode Organizer 的 Archives 里选择刚生成的版本后在右侧菜单找到 "Download Debug Symbols" 并点击下载。</p>
+
+        <h5>Android</h5>
+        <p>
+          通常指的是 Mapping Files，主要用于被
+          <a href="https://developer.android.com/studio/build/shrink-code?hl=zh-cn">proguard 混淆</a>
+          后代码复原使用。如果使用了 tinker 还可以生成的 AndroidManifest.xml 和 R.txt 等文件也做一起压缩处理。
+        </p>
+  teardowns:
+    title: 应用解包
+    new:
+      title: 新建应用解包
+    create:
+      create: :'teardowns.new.title'
+    index:
+      create: :'teardowns.new.title'
+      upload_history: 上传历史
+      uploaded_at: 上传时间
+      app_name: 应用名称
+      version: 版本
+      platform: 平台
+      uploader: 提交者
+      actions: 操作
+      anonymous: 匿名者
+      not_found:
+        title: 没有发现任何应用解包！
+        body_html: 点击右上角的 <i class="fa-regular fa-plus-square"></i> 新建应用解包
+    show:
+      title: "%{name} 解包信息"
+      expired_in: "约%{time}后过期"
+      already_expired: 过期%{time}
+      expired: 刚好过期
+      related_app: 关联提醒
+      related_body: 当前解包关联的应用是%{link}
+      unkonwn: 未知
+      metadata: 应用信息
+      app_name: 名称
+      version: 版本
+      package_name: 包名
+      native_codes: 原生架构
+      supported_device: 支持设备
+      android_min_sdk: 最低支持版本
+      android_target_sdk: 编译构建版本
+      file_size: 文件大小
+      release_type: 打包类型
+      activities:
+        one: Activity
+        other: Activities
+      deep_links:
+        one: Deep Link
+        other: Deep Links
+      features:
+        one: Feature
+        other: Features
+      url_schemes:
+        one: URL Scheme
+        other: URL Schemes
+      permissions:
+        one: Permission
+        other: Permissions
+      services:
+        one: Service
+        other: Services
+      entitlements:
+        one: Entitlement
+        other: Entitlements
+      min_ios_version: 最低 iOS 版本
+      min_tvos_version: 最低 tvOS 版本
+      min_macos_version: 最低系统版本
+      capabilities: 启用能力
+      devise_list: 设备列表 (%{count})
+      developer_certs: 开发者证书
+      cert: 证书 %{index}
+      cert_expired_at: "%{date} 到期"
+      cert_created: 创建日期
+      cert_expired: 失效日期
+      cert_version: 版本
+      cert_serial: 序列
+      cert_issuer: 发布人
+      cert_algorithem: 签名算法
+      cert_subject: 主题
+      cert_digest: 数字摘要
+      cert_length: 长度
+      signature_title: 应用签名
+      signature: 签名版本 %{scheme}
+      cert_fignger: 签名指纹 %{digest}
+      signature_not_found: 签名不存在
+      signature_verified: 签名校验通过
+      signature_unverified: 签名校验待开发
+      mobileprovision: 描述文件
+      uuid: UUID
+      mobileprovision_name: 名称 (类型)
+      team_id: 团队名称 (Team ID)
+      created_at: 创建时间
+      expired_at: 过期时间
+      archs: 应用架构
+      product_name: 产品名称
+      product_version: 产品版本
+      assembly_version: 程序集版本
+      file_version: 文件版本
+      file_description: 文件描述
+      copyright: 版权
+      original_filename: 原始文件名
+      company_name: 公司名称
+      binary_size: 二进制文件大小
+      imports: 引用库
+      uploaded_date: 上传日期
+      uploader: 上传者
+    help:
+      title: 帮助中心
+      body_html: |
+        <p>
+          通过右上角 <i class="fa-regular fa-plus-square"></i> 按钮上传 iOS、Android 移动应用就能轻松读取出来应用中的实用信息用于查阅、
+          诊断、参考和定位问题：
+        </p>
+        <table class="d-table">
+          <tr>
+            <th>iOS</th>
+            <th>Android</th>
+          </tr>
+          <tr>
+            <td>名称</td>
+            <td>名称</td>
+          </tr>
+          <tr>
+            <td>支持设备</td>
+            <td>支持设备</td>
+          </tr>
+          <tr>
+            <td>包名（bundle identifier）</td>
+            <td>包名（package name）</td>
+          </tr>
+          <tr>
+            <td>打包类型</td>
+            <td>打包类型</td>
+          </tr>
+          <tr>
+            <td>最低 iOS 版本</td>
+            <td>Android 最低版本 / 目标版本</td>
+          </tr>
+          <tr>
+            <td>Entitlements</td>
+            <td>Activities</td>
+          </tr>
+          <tr>
+            <td>启用能力</td>
+            <td>Services</td>
+          </tr>
+          <tr>
+            <td>URL Schemes</td>
+            <td>Features</td>
+          </tr>
+          <tr>
+            <td>测试设备列表</td>
+            <td>Permissions</td>
+          </tr>
+          <tr>
+            <td>开发者证书</td>
+            <td>签名信息</td>
+          </tr>
+          <tr>
+            <td>描述文件</td>
+            <td>原生架构</td>
+          </tr>
+        </table>
+    messages:
+      upload_events: "%{name} 上传了 %{version} 版本"
+      download_events: "%{name} %{version} 版本被下载"
+      changelog_events: "%{name} %{version} 版本更新了变更日志"
+      unknown_events: "%{name} 触发了未知事件: %{event}"
+      errors:
+        not_found_file: "无法找到解包文件: %{message}"
+        not_support_file_type: 应用的文件类型不支持
+        failed_get_metadata: 应用解析异常，请确保是支持的文件类型且没有安全加固处理
+        unknown_parse: "上传应用解析发现未知异常: %{message} (%{class})"
+        choose_supported_file_type: 请选择需要解包的 .apk/.aab/.ipa/.mobileprovision 或 macOS.app.zip 文件
+  udid:
+    title: 设备 UDID
+    index:
+      apple_tip: 请使用 iPhone 或 iPad 扫描二维码获取
+      macos_tip: 系统限制无法检测 macOS 芯片类型，请自行选择使用 iPhone、iPad 扫码或点击下面按钮获取设备 UDID
+      nonapple_tip: :'udid.index.apple_tip'
+      fetch_udid: 获取设备 UDID
+      app_open_in_safari: 在 Safari 中打开并获取
+      app_open_in_webbrower: 在任意浏览器中打开并获取
+      help:
+        title: 为什么要下载安装描述文件获取设备 UDID?
+        body_html: |
+          <p>
+            UDID 全称 Unique Device Identifier 是苹果设备唯一且独一无二的识别码，iOS 7 之前可以从应用获取，
+            之后版本不再允许从应用内随意获取，iOS 的应用打包如使用 AdHoc 的方式签名必须设置设备白名单来保证设备测试的安全性
+            （说人话就是不允许在非苹果应用市场分发），因此需要通过外部安装描述文件的方式单次授权获取。
+          </p>
+          <strong>获取步骤</strong>
+          <ol class="list-decimal px-5">
+            <li>点击系统会弹窗的 “允许” 下载描述文件</li>
+            <li>打开描述文件
+              <ol>
+                <li>iOS: 打开手机 “设置” 找到顶部的 “已下载描述文件” 点击可以待安装的 “获取设备UDID” 的描述文件</li>
+                <li>macOS: 在下载路径双击打开 <code>install.mobileconfig</code>，打开系统设置点击左侧菜单的 "描述文件"</li>
+              </ol>
+            </li>
+            <li>一路点击 “安装” 并输入锁屏密码允许安装描述文件</li>
+            <li>安装之后描述文件会自动删除并跳转一个结果页面</li>
+          </ol>
+    show:
+      title: 设备信息
+      metadata: 设备信息
+      registered_but_no_related_app: 本设备已注册，很遗憾还没有发现关联应用
+      registered_with_related_apps: 本设备已注册，下面选择需要安装的应用吧
+      register: 本设备还未注册，快去选择对应的苹果开发者主体注册吧！
+      unregistered: 发现一台未注册的设备，复制 UDID 给苹果开发工程师哦！
+      registered_apps: 可安装应用
+      udid: UDID
+      serial: 序列化
+      product: 内部型号
+      version: 内部版本
+      name: 设备名称
+      platform: 平台
+      model: 产品型号
+      status: 状态
+      enabled: 可用
+      disabled: 禁用
+      created_at: 注册时间
+      upload_full_version_release: :'dashboard.timeline.upload_full_version_release'
+      upload_auto_version_release: :'dashboard.timeline.upload_auto_version_release'
+      registered_device: 已关联苹果开发者
+      new_register_device: 注册到苹果开发者
+      channels: 应用渠道
+      releases: 应用版本
+      apple_keys: 苹果开发者
+      team_name: 团队名称
+      team_id: 团队 ID
+      register_device: 注册设备
+      related_apple_keys_not_found: 没有发现苹果开发者账户
+      related_apps_not_found_with_registered_device: 本设备是通过其他设备同步的方式被注册，但您的设备还没有关联的应用上传
+      related_apps_not_found: 当前设备可能还没有注册到苹果开发者或注册的应用没有上传到 Zealot
+    edit:
+      information: 关联信息
+    install:
+      title: 获取设备 UDID 描述文件
+      organization: 苹果 UDID 授权服务
+      description: |
+        ↑↑↑↑ 显示"未签名"或"未验证"属于正常情况。
+
+        描述文件安装后获取本机设备 UDID 后会自动删除掉，请放心安装。
+        本次授权由 %{name} 发起请求: %{url}
+
+  web_hooks:
+    title: :'admin.web_hooks.title'
+    create: :'admin.web_hooks.new.title'
+    enable: 启用
+    shared: 共享
+    not_found: 没有发现网络钩子
+    current_channel: 当前渠道
+    test: 发送测试事件
+    disable: 禁用
+    destroy: 删除
+    messages:
+      parse_done_and_refreshing: "解析完成，页面正在刷新 ..."
+  settings:
+    title: :'admin.settings.title'
+    preset_schemes:
+      beta: 测试版
+      adhoc: 内测版
+      enterprise: 企业版
+      production: 产品版
+    preset_role:
+      member: 用户
+      developer: 开发者
+      admin: 管理员
+    site_locale:
+      zh-CN: 简体中文
+      en: 英文
+    site_appearance:
+      light: 明亮
+      dark: 黑暗
+      auto: 随系统自动
+  download:
+    releases:
+      show:
+        not_found: 找不到应用文件，无法提供下载服务
+    debug_files:
+      show:
+        not_found: 找不到调试文件，无法提供下载服务
+  api:
+    unauthorized_channel_key: 无效的应用渠道 Key
+    unauthorized_token: 未授权用户 token
+    unprocessable_entity: 参数错误，请检查请求的参数是否正确
+    apps:
+      upload:
+        create:
+          debug: 开发版
+          adhoc: 测试版
+          enterpse: 企业版
+          release: 线上版
+      version_exist:
+        show:
+          not_found: 应用版本不存在
+          missing_params: 参数缺失，请使用 bundle_id, release_version, build_version 或 bundle_id, git_commit 组合参数
+    schemes:
+      index:
+        not_found: 应用 ID=%{id} 没有找到应用类型
+    debug_files:
+      download:
+        default:
+          not_found: 调试文件版本不存在
+
+  modals:
+    confirm:
+      title: 删除确认?
+      body: 一旦数据被删除，将永久无法恢复，请谨慎操作！
+    reset:
+      title: 重置确认?
+      body: 当前设置将恢复为默认值，请确认操作！
+    destroy_apple_key:
+      title: 删除苹果开发者账户确认?
+      body: |
+        一旦 %{name} 被删除，将永久无法恢复，请谨慎操作！
+    install_issue:
+      title: 安装中的错误及解决办法
+      body_html: |
+        <ol class="list-decimal px-5">
+          <li>
+            在 iOS 9 以上版本，苹果对企业签名的应用做了运行限制。请安装后进 "设置" - "通用" - "描述文件"，
+            选择该应用对应的企业证书，点击文字 "信任企业开发者"。
+          </li>
+          <li>受苹果系统生态限制，安装 AdHoc 版本前请确认已经<strong>卸载</strong>应用商店安装的应用，否则无法进行安装！！</li>
+        </ol>
+    cert_expired_issues:
+      title: iOS 签名证书的错误及解决办法
+      body_html: |
+        <ol class="list-decimal px-5">
+          <li>
+            在 iOS 系统中苹果为了限制应用只在 AppStore 应用商店分发，对开发测试及上架的应用设计了签名校验机制。
+            签名证书自签发之日起，有效期为一年。过期后需要重新生成后再重新签名应用后才能继续安装。
+          </li>
+          <li>告知应用的开发人员，去苹果开发者网站重新生成签名证书并重新签名打包上传就能解决。</li>
+          <li>重新生成签名证书不会对之前的应用有任何效果，也就是一旦过期永远都是过期，除非重新签名。</li>
+        </ol>
+    sponsor:
+      title: 支持 Zealot 项目发展
+      more_channels: 更多渠道
+      intro: Zealot 是一个开源项目，致力于为移动应用开发者提供一个简单易用的内部分发平台。如果你觉得 Zealot 对你的工作有所帮助，欢迎通过以下方式支持项目的正常维护和持续发展
+      outro: 感谢你选择 Zealot 作为你的应用分发解决方案
+    tooltip:
+      delete: 删除
+    buttons:
+      close: 关闭
+      cancel: 取消
+      confirm: 确定
+      destroy: 删除
+      okay: 明白
+
+  demo:
+    app_name1: 默认应用
+    app_name2: 默认 Android 应用
+    android_channels:
+      channel1: 华为
+      channel2: 小米
+      channel3: oppo
+      channel4: vivo
+      channel5: 应用宝
+
+  # Comments datetime translations are currently disabled.
+  # To complex to soluve number between chinese chars.
+  # datetime:
+  #   distance_in_words:
+  #     about_x_hours: "约 %{count} 小时"
+  #     about_x_months: "约 %{count} 个月"
+  #     about_x_years: "约 %{count} 年"
+  #     almost_x_years: 接近 %{count} 年
+  #     half_a_minute: 半分钟前
+  #     less_than_x_seconds: 不到 %{count} 秒
+  #     less_than_x_minutes: 不到 %{count} 分钟
+  #     over_x_years: "%{count} 年多"
+  #     x_seconds: "%{count} 秒"
+  #     x_minutes: "%{count} 分钟"
+  #     x_days: "%{count} 天"
+  #     x_months: "%{count} 个月"
+  #     x_years: "%{count} 年"
+
+  date:
+    formats:
+      nice: "%Y-%m-%d"
+
+  time:
+    formats:
+      nice: "%Y-%m-%d %p %I:%M GMT%:::z"
+
+  errors:
+    code:
+      "400":
+        title: 您提交的请求无效或格式不正确
+        content: 可能是参数错误或缺少必要的参数
+      "403":
+        title: 你没有访问这个页面的权限
+        content: 当前用户没有权限访问此页面或执行此操作
+      "404":
+        title: 找不到你想要的内容
+        content: 当前访问的页面不存在或者已经被移动
+      "406":
+        title: 页面无法处理请求
+        content: 服务器无法生成客户端请求的内容
+      "410":
+        title: 你所要访问的页面此处已不存在
+      "422":
+        content: 无法确认登录信息。你是不是屏蔽了 Cookie？
+        title: 无法确认登录信息
+      "429":
+        title: 请求被限制
+      "500":
+        content: 抱歉，我们的后台出错了
+        title: 这个页面有问题
+      "503":
+        title: 服务暂时不可用，无法请求该页面
+    messages:
+      homepage_title: 首页
+      goback_title: 上级页面
+      blank: 不能为空值
+      inclusion: 不包含在可选值列表中
+      only_integer: 必须是数字
+      json_format: 符合 JSON 标准格式
+      not_authorized_policy: "当前用户没有权限执行 %{model}#%{query} 操作"
+      not_match_url: "页面路径不存在 %{url}"
+      unexpected_parameter: "不可使用的参数: %{value}"
+      length_range: 长度限制：%{minimum} ~ %{maximum} 位
+      optional_value: 可选值：%{value}
+      invaild_in_demo_mode: 演示模式不能编辑
+      record_existed: "%{model} 已存在无法操作"
+      development_only: 仅开发环境显示
+      database_connection_error: 数据库连接或鉴权失败，请检查配置是否正确
+      goback_or_redirect_to_homepage: 请返回%{goback_link}或%{homepage_link}看看
+      record_not_found: 此查询数据找不到
+      user_not_found: 没有找到此用户
+      api_not_found: 没有这个接口
+      app_archived: "%{name}应用已归档，无法进行此操作"
+      cannot_lock_default_admin: 默认管理员账户不能被禁用
+  active_job:
+    webhook:
+      failures:
+        empty_release: 没有找到上传应用版本去发送测试网络钩子
+        empty_url: 网络钩子 URL 不能为空
+        send_failed: "发送网络钩子失败 %{url}: %{error}"
+    debug_file:
+      success: 调试文件 %{id} 解析完成，3 秒后自动刷新本页面
+      failures:
+        not_found_file: 遇到玄学问题造成无法找到调试文件，解析失败
+        not_matched_bundle_id: "现有应用并不包含上传 bundle id: %{bundle_id}"
+        unknown_format: 上传的调试文件类型识别错误
+    backup:
+      success: "%{key} 备份创建完成"
+      failures:
+        max_keeps_limited: "%{key} 备份设置最大限制值为零"
+        dump_command: "执行备份命令执行失败: %{message}"
+        restore_command: "恢复备份命令执行失败: %{message}"
+        storage_full: "备份存储空间不足，无法创建新的备份: %{key}"
+  activerecord:
+    models:
+      app: 应用
+      scheme: 应用类型
+      channel: 应用渠道
+      release: 应用版本
+      collaborator: 应用成员
+      apple_key: 苹果开发者账户
+      udid: 设备 UDID
+      debug_file: 调试文件
+      teardown: 应用解包
+      setting: 系统设置
+      web_hook: 网络钩子
+      device: 测试设备
+      backup: 数据备份
+    attributes:
+      channel:
+        name: 渠道名称
+      web_hook:
+        url: 网络钩子 URL
+        body: 自定义消息体
+      device:
+        name: 设备名称
+      collaborator:
+        owner: 拥有者
+      release:
+        file: 应用文件
+    success:
+      create: "%{key}创建成功"
+      update: "%{key}更新成功"
+      archived: "%{key}归档成功"
+      unarchived: "%{key}取消归档成功"
+      destroy: "%{key}删除成功"
+      reset: "重置%{key}为默认值成功"
+      update_and_restart: "%{key}更新成功，需要重启才能生效"
+      reset_and_restart: "重置%{key}为默认值成功，需要重启才能生效"
+    errors:
+      messages:
+        same_value: "%{key}没有发生变化，忽略此操作"
+        invaild_json: 无效的 JSON 格式
+        invaild_jb: 无效格式
+        incorrect_json_format: 未知 JSON 格式
+        empty_json_value: JSON 值为空
+        unknown: "%{key}操作失败"
+      models:
+        collaborator:
+          attributes:
+            owner:
+              unique: 应用只能设置一个拥有者
+        setting:
+          default_message: "请检查 '%{key}' 的如下问题："
+        apple_key:
+          attributes:
+            issuer_id:
+              missing_distribution_certificate: 请先添加 Distribution 证书后再重新执行当前操作
+            key_id:
+              unauthorized: 用户身份认证失败，请重新检查各项参数是否正确
+              forbidden: 密钥权限太低，重新生成一个最低限度为【开发者】权限的密钥
+              required_agreement_missing_or_expired: 苹果开发者协议未同意或已过期，请重新登录苹果开发者网站同意协议后再重新执行当前操作
+              unknown: "未知错误: %{message}"
+            devices:
+              invalid_value: 注册设备 %{value} 是无效的请检测后重新尝试
+              api: "苹果返回错误：%{message}"
+              unknown: "未知错误: %{message}"
+            checksum:
+              taken: 匹配，密钥文件已存在
+        udid:
+          attributes:
+            name:
+              invalid_value: 注册设备 %{value} 是无效的请检测后重新尝试
+              api: "苹果返回错误：%{message}"
+              unknown: "未知错误: %{message}"
+        debug_file:
+          attributes:
+            app_id:
+              blank: 请选择需要关联的应用
+            file:
+              blank: 必须选择一个 zip 文件
+            checksum:
+              taken: 文件已经存在，不能重复上传
+        backup:
+          attributes:
+            schedule:
+              invalid: 表达式格式错误
+        release:
+          attributes:
+            file:
+              not_enough_space: " %{file_size}，因文件系统空间只剩于 %{disk_free} 无法上传"
+  user_mailer:
+    omniauth_welcome_email:
+      subject: 欢迎使用 %{title}
+      default_password: 您已经使用第三方登录成功授权注册了 Zealot 账号，系统随机生成了默认的密码：
+  devise:
+    confirmations:
+      new:
+        title: 邮箱确认
+    registrations:
+      new:
+        error: 错误！
+        register_closed: 服务没有开放注册功能！请联系管理员开通账户。
+        register: 注册
+      edit:
+        change_appearance: 修改外观
+        update_appearance: 更新外观
+        change_password: 修改密码
+        update_password: 更新密码
+        api_token: API 密钥
+    normal:
+      title: 标准登录
+      user_login_disabled: 用户登录已被禁用，请联系管理员
+    ldap:
+      title: LDAP 登录
+      username: LDAP 账户
+      password: LDAP 密码
+    passwordless:
+      title: 免密登录
+      send_magic_link: 发送魔法链接
+      not_found_in_database: 没有找到该邮箱对应的用户
+      magic_link_sent: 已向您的邮箱发送登录链接。请按照链接登录您的账户
+      magic_link_sent_paranoid: 如果您的账户存在，您将收到一封包含登录链接的电子邮件。请按照链接登录您的账户
+      signed_in: :devise.sessions.signed_in
+    failure:
+      magic_link_invalid: 无效或已过期的登录链接
+    mailer:
+      magic_link:
+        subject: "这是您的魔法登录链接 ✨"
+        body: |
+          <p>你好 %{email}!</p>
+          <p>您可以使用以下链接登录：</p>
+          <p>%{link}</p>
+          <p>请注意，链接将在 %{expiration_time}后过期。</p>
+        login_link_text: 点击这里登录到您的账户
+    github:
+      org_check_fail: "GitHub 组织检查失败： %{code}"
+      org_required_fail: "您必须是 %{required_org} GitHub 组织的成员才能登录。"
+    shared:
+      hint: "- 或者 -"
+      links:
+        provider:
+          feishu: 飞书
+          google: "Google "
+          gitlab: "Gitlab "
+          github: "Github "
+          gitea: "Gitea "
+          openidconnect: "OpenID "
+  helpers:
+    submit:
+      # create: 新建%{model}
+      # update: 更新%{model}
+      # submit: 存储%{model}
+      release:
+        create: 上传应用
+      teardown:
+        submit: 开始解包
+        create: 开始解包
+        update: 更新解包
+      debug_file:
+        create: 上传调试文件
+      setting:
+        create: 保存设置
+        update: 更新设置
+      apple_team:
+        update: 更新
+      backup:
+        create: 创建备份
+      device:
+        update: 更新名称
+  views:
+    pagination:
+      truncate: ...
+      first: 首页
+      previous: 前页
+      next: 后页
+      last: 尾页

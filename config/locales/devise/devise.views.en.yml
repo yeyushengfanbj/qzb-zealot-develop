@@ -1,0 +1,7 @@
+en:
+  devise:
+    registrations:
+      edit:
+        danger_zone: Danger Zone
+        cancel_my_account: Delete account
+        cancel_my_account_warning: Do you really want to delete your account?

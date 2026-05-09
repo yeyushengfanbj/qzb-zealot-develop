@@ -1,0 +1,13 @@
+.space-y-4
+  .d-alert.d-alert-info
+    i.fa-solid.fa-info-circle
+    div 
+      strong.pr-1 Woo-ha
+      - if @release_total > 0
+        = t('udid.show.registered_with_related_apps')
+      - else
+        = t('udid.show.registered_but_no_related_app')
+
+  == render 'udid/stats', channel_total: @channel_total, release_total: @release_total, apple_key_total: @apple_key_total
+  == render 'udid/udid_metadata', device: @device
+  == render 'udid/apps', device: @device, channels: @channels

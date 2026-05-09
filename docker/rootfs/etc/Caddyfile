@@ -1,0 +1,71 @@
+{
+	admin off
+	auto_https off
+}
+
+:80
+root * /{$ZEALOT_PATH:app}/public
+encode zstd gzip
+file_server
+log {
+	output file /{$ZEALOT_PATH:app}/log/caddy.log {
+		roll_size 50mb
+		roll_keep 5
+		roll_keep_for 720h
+	}
+}
+
+@zealot {
+	path *
+
+	# static files
+	not file
+}
+
+reverse_proxy @zealot {
+	to localhost:3000
+
+	# health_uri /api/health
+	# health_interval 2s
+	# health_timeout 10s
+
+	header_up X-Forwarded-Proto https
+
+	@accel header X-Accel-Redirect *
+	handle_response @accel {
+		rewrite * {http.reverse_proxy.header.X-Accel-Redirect}
+		rewrite * {rp.header.X-Accel-Redirect}
+		method  * GET
+		file_server
+	}
+}
+
+# handle reverse proxy crash errors
+handle_errors {
+	# @debug path /debug-errors
+	# handle @debug {
+	# 	respond `Error Details:
+	# 	Status Code: {http.error.status_code}
+	# 	Error: {http.error}
+	# 	Error Message: {err.message}
+	# 	Error Status: {err.status_code}
+	# 	HTTP Error: {http.error.message}
+	# 	Error Name: {http.error.name}
+	# 	Stack: {http.error.trace}` 200
+	# }
+
+	# show loading page if backend is down
+	@backend_down `{err.message}.contains("connect: connection refused") && {http.request.header.Accept}.matches(".*text/html.*")`
+	handle @backend_down {
+		rewrite * /loading.html
+		file_server {
+			status 200
+		}
+	}
+
+	@5xx `{err.status_code} >= 500 && {err.status_code} < 600`
+	handle @5xx {
+		rewrite * /errors/{err.status_code}.html
+		file_server
+	}
+}

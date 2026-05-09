@@ -1,0 +1,48 @@
+ruby:
+  events = [:upload_events, :download_events, :changelog_events]
+
+tr
+  td class="px-0 space-y-1 space-x-4"
+    div class="font-bold break-all"
+      = web_hook.url
+    div class="space-x-1"
+      - events.each do |event|
+        - if web_hook.send(event) == 1
+          span class="d-badge d-badge-sm d-badge-soft d-badge-secondary"
+            = t("simple_form.labels.web_hook.#{event}")
+    div class="flex gap-1"
+      - web_hook.channels.all.each do |shared_channel|
+        span class="d-badge d-badge-sm d-badge-soft d-badge-info"
+          - if shared_channel == channel
+            = t('web_hooks.current_channel')
+          - else
+            = link_to shared_channel.app_name, friendly_channel_overview_path(shared_channel), \
+              data: { turbo_frame: '_top' }
+
+  - unless channel.app.archived
+    td class="px-0"
+      - if type == :enabled
+        div.d-join
+          div class="d-dropdown d-dropdown-top d-dropdown-end"
+            button class="d-btn d-join-item d-tooltip" data-tip=t('web_hooks.test')
+              i.fa-regular.fa-comment-dots
+            ul class="d-dropdown-content d-menu bg-base-200 rounded-box z-1 w-60 p-2 shadow-sm"
+              li class="opacity-60 text-sm px-3 py-2" = t('web_hooks.test')
+              - events.each do |event|
+                li = link_to t("simple_form.labels.web_hook.#{event}"), \
+                  test_channel_web_hook_path(channel, web_hook, event), \
+                  data: { turbo: false }
+          - if web_hook.channel_id == channel.id
+            = button_link_to '', channel_web_hook_path(channel, web_hook), 'trash-alt', \
+              class: 'd-btn text-error d-tooltip', \
+              data: { tip: t('web_hooks.destroy'), turbo_method: :delete, turbo_confirm: t('modals.confirm.body') }
+          - else
+            / MUST disable turbo to avoid pre-fetching issue
+            = button_link_to '', disable_channel_web_hook_path(channel, web_hook), 'link-slash', \
+              class: 'd-btn d-join-item text-warning d-tooltip', \
+              data: { tip: t('web_hooks.disable'), turbo: false }
+      - elsif type == :shared
+        / MUST disable turbo to avoid pre-fetching issue
+        = button_link_to '', enable_channel_web_hook_path(channel, web_hook), 'link', \
+          class: 'd-btn-sm d-tooltip d-tooltip-left', \
+          data: { tip: t('web_hooks.enable'), turbo: false }

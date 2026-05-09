@@ -1,0 +1,34 @@
+- content_for :title do
+  = @title
+
+- content_for :section_title do
+  = @title
+
+div[
+  data-controller="udid"
+  data-udid-apple-tip-value="#{t('.apple_tip')}"
+  data-udid-macos-tip-value="#{t('.macos_tip')}"
+  data-udid-nonapple-tip-value="#{t('.nonapple_tip')}"
+]
+  == render 'shared/install_limited', safari_text: t('.app_open_in_safari'), brower_text: t('.app_open_in_webbrower')
+
+  .card
+    .card-body.gap-6 data-udid-target="qrcode"
+      .flex.justify-center.w-full.relative
+        .d-skeleton.size-80 data-udid-target="skeleton"
+        .hidden data-udid-target="imageUrl" = install_qrcode_image_tag
+      .opacity-60.text-center.items-center data-udid-target="tip" = t('.apple_tip')
+    .card-footer.p-0 data-udid-target="install"
+      = link_to t('.fetch_udid'), install_udid_index_path, class: 'd-btn d-btn-success d-btn-lg w-full rounded-t-none'
+
+  - if params[:preview].present?
+    .card.mt-4
+      .card-header
+        h3.card-title Debug zone
+      .card-body
+        textarea.form-control.text data-udid-target="debug" rows="10"
+
+.card.mt-4
+  .card-header
+    h3.card-title = t('.help.title')
+  .card-body = t('.help.body_html')

@@ -1,0 +1,66 @@
+ARG VARIANT=bookworm
+FROM mcr.microsoft.com/vscode/devcontainers/base:${VARIANT}
+
+# Update args in docker-compose.yaml to set the UID/GID of the "vscode" user.
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+RUN if [ "$USER_GID" != "$USER_UID" ] || [ "$USER_UID" != "1000" ]; then \
+      groupmod --gid $USER_GID vscode && \
+      usermod --uid $USER_UID --gid $USER_GID vscode && \
+      chmod -R $USER_UID:$USER_GID /home/vscode; \
+    fi
+
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && \
+    apt-get -y install --no-install-recommends \
+    debian-keyring debian-archive-keyring apt-transport-https \
+    build-essential gnupg2 tar git zsh libssl-dev zlib1g-dev libyaml-dev  \
+    imagemagick libjpeg-dev libpng-dev libtiff-dev libwebp-dev \
+    caddy tzdata \
+    vim git-lfs tig tmux
+
+# Install postgresql-client from offical repo
+RUN curl -1sLf 'https://www.postgresql.org/media/keys/ACCC4CF8.asc' | gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg && \
+    echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
+    apt-get update && \
+    apt-get install -y postgresql-client libpq-dev
+
+# Install mise
+ENV MISE_INSTALL_PATH="/usr/local/bin/mise"
+RUN curl https://mise.run | sh
+
+# Install lazygit
+ENV LAZYGIT_VERSION="0.58.0"
+RUN curl -L https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz | tar -xz -C /usr/local/bin && \
+    chmod +x /usr/local/bin/lazygit
+
+USER vscode
+
+RUN mise use -g usage || true && \
+    echo 'eval "$(mise activate bash --shims)"' >> ~/.bash_profile && \
+    echo 'eval "$(mise activate bash)"' >> ~/.bashrc && \
+    sed -i -E "s/^plugins=\(.+\)$/plugins=(debian history mise git tmux npm ruby gem bundler rake rails)/g" ~/.zshrc
+
+ENV ZEALOT_PATH=/workspace
+WORKDIR /workspace
+
+COPY .mise.toml ./
+RUN mise trust && \
+    export RUBY_CONFIGURE_OPTS="--disable-install-doc" && \
+    mise install && \
+    RUBY_VERSION=$(cat .mise.toml | grep ruby | sed -E 's/([^=]+)="([^"]+)"/\1@\2/') && \
+    mise use -g $RUBY_VERSION && \
+    NODEJS_VERSION=$(cat .mise.toml | grep nodejs | sed -E 's/([^=]+)="([^"]+)"/\1@\2/') && \
+    mise use -g $NODEJS_VERSION && \
+    mise reshim
+
+ENV PATH="${HOME:-/home/vscode}/.local/share/mise/shims:$PATH"
+COPY Gemfile Gemfile.lock package.json pnpm-lock.yaml ./
+
+RUN gem install bundler -v $(grep -A1 "BUNDLED WITH" Gemfile.lock | tail -n1 | awk '{print $1}') && \
+    npm install --global pnpm mprocs
+
+USER root
+RUN chmod a+w Gemfile.lock && mkdir node_modules && chown -R vscode:vscode /workspace
+USER vscode
+RUN bundle install && pnpm install

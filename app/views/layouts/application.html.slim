@@ -1,0 +1,43 @@
+doctype html
+html lang="#{I18n.locale}" data-theme=active_theme
+  head
+    title = page_title(yield :title)
+    meta[charset="utf-8"]
+    meta[name="viewport" content="width=device-width, initial-scale=1.0"]
+    link[rel="apple-touch-icon" sizes="60x60" href="#{vite_asset_path('images/zealot-icon.png')}"]
+    link[rel="apple-touch-icon" sizes="120x120" href="#{vite_asset_path('images/zealot-icon@2x.png')}"]
+    link[rel="apple-touch-icon" sizes="180x180" href="#{vite_asset_path('images/zealot-icon@3x.png')}"]
+    link[rel="icon" type="image/x-icon" href="#{vite_asset_path('images/zealot-icon@3x.png')}"]
+    == favicon_link_tag vite_asset_path('images/zealot-icon.png')
+    == favicon_link_tag vite_asset_path('images/zealot-icon-dark.png'), media: "(prefers-color-scheme: dark)"
+
+    == vite_stylesheet_tag 'application', 'data-turbolinks-track': 'reload'
+    == vite_javascript_tag 'application', defer: true, type: :module, 'data-turbolinks-track': 'reload'
+    == yield :header_tags
+    == action_cable_meta_tag
+    == csrf_meta_tags
+
+  body[
+    data-controller="global"
+    data-global-drawer-status-key-value=drawer_status_key
+    data-global-appearance-value=active_appearance
+    data-global-themes-value=site_themes
+  ]
+    == render 'layouts/announcement_bar'
+    .d-drawer.bg-base-100 class="md:d-drawer-open"
+      input#zealot-drawer.d-drawer-toggle[
+        type="checkbox" 
+        checked=drawer_status
+        data-global-target="drawer" 
+        data-action="change->global#storeDrawerStatus"
+      ]
+      div class="d-drawer-content flex flex-col min-h-screen"
+        == render 'layouts/navigation'
+        == render 'layouts/content'
+        == render 'layouts/footer'
+      div class="d-drawer-side d-is-drawer-close:overflow-visible"
+        == render 'layouts/sidebar'
+
+    == render 'layouts/notifications'
+    == render 'layouts/analytics'
+    == turbo_frame_tag :modal

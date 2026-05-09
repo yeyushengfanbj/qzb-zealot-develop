@@ -1,0 +1,9 @@
+.card
+  .card-header
+    h3.card-title
+      i.fa-solid.fa-qrcode
+      = t('releases.show.qrcode')
+  .card-body class="rounded-none p-0"
+    div class="flex justify-center w-full p-4"
+      = app_qrcode_tag(@release)
+  .card-footer.text-center = t('releases.show.scan_qrcode_with_any_supported_app')

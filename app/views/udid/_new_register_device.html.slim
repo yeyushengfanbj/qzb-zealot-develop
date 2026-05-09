@@ -1,0 +1,12 @@
+.space-y-4
+  .d-alert.d-alert-warning
+    i.fa-solid.fa-info-circle
+    div 
+      strong.pr-1 Yah-ah
+      = t('udid.show.register')
+
+  - if @device.blank?
+    == render 'udid/register_form', udid: params[:udid], product: params[:product]
+
+  == render 'udid/udid_metadata', device: @device
+  == render 'udid/apps', device: @device, channels: @channels

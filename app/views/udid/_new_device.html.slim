@@ -1,0 +1,10 @@
+.space-y-4
+  .d-alert.d-alert-info
+    i.fa-solid.fa-info-circle
+    div 
+      strong.pr-1 Ta-Da
+      = t('udid.show.unregistered')
+
+  == render 'udid/stats', channel_total: @channel_total, release_total: @release_total, apple_key_total: @apple_key_total
+  == render 'udid/udid_metadata', device: @device
+  == render 'udid/apps', device: @device, channels: @channels

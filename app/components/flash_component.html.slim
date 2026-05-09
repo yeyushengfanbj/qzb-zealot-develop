@@ -1,0 +1,12 @@
+.d-alert[
+  class="max-w-220 #{@style}"
+  data-controller="notification"
+  data-notification-delay-value=@options[:delay]
+] 
+  i class="fa-solid fa-#{@icon} fs-3"
+  div
+    - if @title.present?
+      h3 class="font-bold" = @title
+      div class="text-xs" = @message
+    - else
+      = @message

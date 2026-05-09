@@ -1,0 +1,63 @@
+- if releases.present?
+  = form_with model: channel, url: destroy_releases_channel_path(channel), method: :delete, \
+    data: { controller: 'bulk-operation' } do |f|
+    .card-body class="p-0"
+      table class="d-table"
+        thead
+          tr
+            - if current_user&.manage?(app: channel.app) && !channel.app.archived
+              th class="w-1"
+                input type="checkbox" data-bulk-operation-target="checkboxAll"
+            th = t('channels.show.version')
+            th = t('channels.show.release_version')
+            th = t('channels.show.build_version')
+            - if channel.device_type.downcase == 'ios'
+              th = t('channels.show.release_type')
+            th = t('channels.show.git_branch')
+            th class="hidden sm:block" = t('channels.show.git_commit')
+            th = t('channels.show.uploaded_at')
+        tbody
+          - releases.each_with_index do |release, index|
+            tr
+              - if current_user&.manage?(app: channel.app) && !channel.app.archived
+                td
+                  input [type="checkbox" name="channel[release_ids][]" value="#{release.id}"
+                        data-bulk-operation-target="checkbox" data-action="bulk-operation#switchDeleteButton"]
+              td
+                = link_to release.version, friendly_channel_release_path(release.channel, release.id), data: { turbo_frame: '_top' }
+              td
+                - if release.release_version == (params[:id] || params[:name])
+                  span class="opacity-70" = release.release_version || '-'
+                - else
+                  = link_to (release.release_version || '-'), friendly_channel_version_path(release.channel, release.release_version), data: { turbo_frame: '_top' }
+              td
+                span class="opacity-70" = release.build_version || '-'
+              - if channel.device_type.downcase == 'ios'
+                td
+                  span class="opacity-70" = release_type_url_builder(release)
+              td
+                = git_branch_url(release) || '-'
+              td class="hidden sm:block"
+                span class="opacity-70" = git_commit_url(release.channel.git_url, release.git_commit) || '-'
+              td
+                div class="d-tooltip d-tooltip-left" data-tip=l(release.created_at, format: :nice)
+                  span class="opacity-80" = time_ago_in_words(release.created_at)
+
+    - if @releases.total_pages > 1 || (current_user&.manage?(app: channel.app) && !channel.app.archived)
+      .card-footer class="pt-4 flex justify-between border-t border-base-300"
+        - if current_user&.manage?(app: channel.app)
+          button[
+            type="submit" 
+            class="d-btn d-btn-error d-tooltip d-tooltip-right" 
+            data-bulk-operation-target="destroyButton"
+            data-turbo-confirm=t('modals.confirm.body')
+            data-tip=t('.delete')
+          ]
+            i.fa-solid.fa-trash-can-arrow-up
+
+        - if @releases.total_pages > 1
+          = paginate @releases
+- else
+  .card-body
+    = t('channels.show.empty_version')
+

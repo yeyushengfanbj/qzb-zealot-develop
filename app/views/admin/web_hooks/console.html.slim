@@ -1,0 +1,8 @@
+- content_for :title do
+  = t('.title')
+
+.card
+  .card-body
+    = simple_form_for(@web_hook, url: test_admin_web_hooks_path) do |f|
+      = f.input :body, input_html: { rows: 18, cols: 10 }
+      = f.button :submit

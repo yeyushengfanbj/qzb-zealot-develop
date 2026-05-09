@@ -1,0 +1,110 @@
+plugins:
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.4
+  TargetRailsVersion: 8.0
+  DisabledByDefault: true
+  SuggestExtensions: false
+  DisplayStyleGuide: true
+  Exclude:
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'lib/omni_auth/**/*'
+  CacheRootDirectory: tmp
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  Exclude:
+    - 'config.ru'
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'config/**/*'
+
+# Some blocks are longer.
+Metrics/BlockLength:
+  Max: 250
+  AllowedMethods:
+    - 'namespace'
+    - 'create_table'
+  Exclude:
+    - 'config/**/*.rb'
+    - 'spec/**/*.rb'
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'config/**/*.rb'
+    - 'spec/**/*.rb'
+    - lib/zealot/backup/manager.rb
+    - app/services/create_sample_apps_service.rb
+
+Metrics/MethodLength:
+  Max: 60
+
+Metrics/ClassLength:
+  Max: 250
+  Exclude:
+    - app/models/release.rb
+
+Metrics/ModuleLength:
+  Max: 180
+
+# Raise complexity metrics
+Metrics/AbcSize:
+  Max: 40
+  Exclude:
+    - 'lib/backup/**/*'
+    - app/models/apple_key.rb
+
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/SpecialGlobalVars:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# We do not need to support Ruby 1.9, so this is good to use.
+Style/SymbolArray:
+  Enabled: true
+
+Lint/EmptyWhen:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+# Disable %w or %W instead for an array of words
+Style/WordArray:
+  Enabled: false
+
+Naming/AccessorMethodName:
+  Enabled: true
+
+Style/RescueStandardError:
+  Enabled: false
+
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+Naming/PredicatePrefix:
+  Enabled: true
+  Exclude:
+    - app/serializers/channel_serializer.rb
+
+Layout/HashAlignment:
+  Enabled: false

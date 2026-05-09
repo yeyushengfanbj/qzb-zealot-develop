@@ -1,0 +1,77 @@
+ruby: 
+  device_total = @apple_key.devices.count
+
+- content_for :section_title do
+  = @apple_key.team&.name || t('.title')
+
+- content_for :title do
+  = t('.title')
+
+- content_for :section_rightpanel do
+  .d-join
+    = button_link_to '', private_key_admin_apple_key_path(@apple_key), 'download', \
+      class: 'd-join-item d-btn text-info', \
+      title: "#{t('.download_private_key')}", \
+      data: { bs_toggle: 'tooltip', bs_custom_class: 'default-tooltip' }
+    = button_link_to '', admin_apple_key_path(@apple_key), 'trash-alt', \
+      class: 'd-join-item d-btn text-error', title: t('modals.buttons.destroy'), \
+      data: { turbo_method: :delete, turbo_confirm: t('modals.destroy_apple_key.body', name: "#{@apple_key.team&.display_name} (#{@apple_key.team&.team_id})"), bs_toggle: :tooltip, bs_custom_class: 'default-tooltip' }
+
+= turbo_frame_tag @apple_key do
+  .grid.grid-cols-1.md:grid-cols-2.gap-4.mb-4
+    .card
+      .card-header 
+        h3.card-title = t('.team_metadata')
+      .card-body.p-0
+        == render 'metadata', apple_key: @apple_key
+
+    .card
+      .card-header
+        h3.card-title = t('.key_metadata')
+      .card-body.p-0
+        table.d-table
+          tr
+            td.font-semibold = t('simple_form.labels.apple_key.issuer_id')
+            td.text-end = @apple_key.issuer_id
+          tr
+            td.font-semibold = t('simple_form.labels.apple_key.key_id')
+            td.text-end = @apple_key.key_id
+
+  .card
+    .card-header
+      h3.card-title
+        = t('.devices')
+      .card-tool 
+        .d-badge.d-badge-ghost = device_total
+    - if device_total
+      .card-body.p-0
+        table.d-table
+          thead 
+            tr
+              th = t('.udid')
+              th = t('.udid_name')
+              th = t('.udid_platform')
+              th = t('.udid_model')
+              th = t('.udid_related_apps')
+              th = t('.udid_created_at')
+          tbody
+            - @apple_key.devices.order(created_at: :desc).each do |device|
+              tr
+                td = link_to device.udid, edit_udid_path(udid: device.udid, apple_key: @apple_key.id), data: { turbo_frame: '_top' }
+                td = device.name
+                td = device.platform
+                td = device.model
+                td = device.channels.count
+                td
+                  span title="#{l(device.created_at, format: :nice)}" data-bs-toggle="tooltip" data-bs-custom-class="default-tooltip" data-bs-placement="right"
+                    = time_ago_in_words(device.created_at)
+    .card-footer
+      .flex.justify-between.items-center
+        - if @apple_key.last_synced_at.present?
+          .opacity-65.d-tooltip.d-tooltip-right data-tip=l(@apple_key.last_synced_at, format: :nice)
+            = t('.last_synced_at', time: time_ago_in_words(@apple_key.last_synced_at))
+        - else
+          = t('.never_sync')
+
+        = button_to t('.sync_now'), sync_devices_admin_apple_key_path(@apple_key), method: :put, \
+            class: 'd-btn d-btn-sm d-btn-primary'

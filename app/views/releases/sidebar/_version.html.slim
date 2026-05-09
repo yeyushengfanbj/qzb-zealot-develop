@@ -1,0 +1,14 @@
+- if channel.release_versions.count > 0
+  .card
+    .card-header
+      h3.card-title
+        i.fa-solid.fa-archive
+        = t('releases.show.major_versions')
+    .card-body class="p-0"
+      table class="d-table"
+        - channel.release_versions.each do |version|
+          tr
+            td
+              = link_to version, friendly_channel_version_path(channel: channel.slug, name: version), \
+                data: { turbo_frame: '_top' }
+

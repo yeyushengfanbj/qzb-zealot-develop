@@ -1,0 +1,75 @@
+ruby:
+  begin
+    app_name = @metadata.name
+  rescue Android::NotFoundError
+    app_name = t('teardowns.show.unkonwn')
+  end
+  
+  properties = [
+    {
+      key: t('teardowns.show.app_name'),
+      value: app_name
+    },
+    {
+      key: t('teardowns.show.version'),
+      value: "#{@metadata.release_version} (#{@metadata.build_version})"
+    },
+    {
+      key: t('teardowns.show.package_name'),
+      value: @metadata.packet_name
+    },
+    {
+      key: t('teardowns.show.native_codes'),
+      value: @metadata.native_codes.empty? ? '-' : @metadata.native_codes.join(', ')
+    },
+    {
+      key: t('teardowns.show.supported_device'),
+      value: "#{device_name(@metadata.device)} (Android)"
+    },
+    (@metadata.min_sdk_version.present? ? {
+      key: t('teardowns.show.android_min_sdk'),
+      value: android_version_info(@metadata.min_sdk_version)
+    } : nil),
+    (@metadata.target_sdk_version.present? ? {
+      key: t('teardowns.show.android_target_sdk'),
+      value: android_version_info(@metadata.target_sdk_version)
+    } : nil),
+    {
+      key: t('teardowns.show.file_size'),
+      value: number_to_human_size(@metadata.size)
+    },
+    {
+      key: t('teardowns.show.uploaded_date'),
+      value: l(@metadata.created_at, format: :nice)
+    },
+    {
+      key: t('teardowns.show.uploader'),
+      value: @metadata.user.username
+    }
+  ].compact
+
+.waterfall
+  .card
+    .card-header
+      h3.card-title
+        i.fa-brands.fa-android.text-success.mr-1
+        = platform_name(@metadata.platform)
+      / .card-tools
+      /   button.btn.btn-tool data-lte-toggle="card-collapse"
+      /     i.fa-solid.fa-plus data-lte-icon="expand"
+      /     i.fa-solid.fa-minus data-lte-icon="collapse"
+    .card-body
+      - properties.each do |prop|
+        .property 
+          .property-key = prop[:key]
+          .property-value = prop[:value]
+
+  == render 'card', key: 'activities', raw: @metadata.activities
+  == render 'card', key: 'deep_links', raw: @metadata.deep_links
+  == render 'card', key: 'url_schemes', raw: @metadata.url_schemes
+  == render 'card', key: 'features', raw: @metadata.features
+  == render 'card', key: 'permissions', raw: @metadata.permissions
+  == render 'card', key: 'services', raw: @metadata.services
+  
+  - if @metadata.developer_certs.present?
+    == render 'signatures_part', signatures: @metadata.developer_certs

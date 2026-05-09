@@ -1,0 +1,23 @@
+[tools]
+ruby="3.4.8"
+nodejs="24.12.0"
+
+[tasks.web]
+description = "Running Rails server"
+run = "bin/rails server -p 3000 -b 0.0.0.0"
+
+[tasks.debug_web]
+description = "Running Rails server"
+run = "bundle exec rdbg -O -n -c -- bin/rails server -p 3000"
+
+[tasks.worker]
+description = "Running Background worker"
+run = "bin/good_job start 2>&1 | tee -a log/worker.log"
+
+[tasks.vite]
+description = "Running Vite server"
+run = "pnpm dev"
+
+[tasks.caddy]
+description = "Running Caddy server"
+run = "caddy run --watch --config docker/rootfs/etc/Caddyfile"

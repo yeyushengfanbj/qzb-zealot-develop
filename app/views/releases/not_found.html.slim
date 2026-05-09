@@ -1,0 +1,16 @@
+- content_for :title do
+  = @title
+
+.card.card-outline.card-error
+  .card-header
+    h3.card-title
+      i.fa-solid.fa-cloud-rain
+      = @title
+  .card-body
+    ul.list-disc.list-inside
+      li = t('releases.messages.errors.deleted_manually')
+      li = t('releases.messages.errors.deleted_programly')
+      li = t('releases.messages.errors.not_found_really')
+  - if @link_href && @link_title
+    .card-footer.p-0
+      = link_to @link_title, @link_href, class: 'd-btn text-error w-full'

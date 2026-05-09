@@ -1,0 +1,9 @@
+- content_for :title do
+  = @title
+
+- content_for :section_title do
+  = @title
+  small class="pl-2 text-sm"
+    = @subtitle
+
+= render @channel, scheme: @channel.scheme, app: @app, releases: @releases

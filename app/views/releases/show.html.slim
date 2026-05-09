@@ -1,0 +1,7 @@
+- content_for :title do
+  = @release.app_name
+
+- if logged_in_or_without_auth?(@release)
+  == render @release, app: @release.app, channel: @release.channel
+- else
+  == render 'releases/body/password_auth'
