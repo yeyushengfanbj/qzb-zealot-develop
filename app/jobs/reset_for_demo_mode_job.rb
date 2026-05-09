@@ -71,7 +71,7 @@ class ResetForDemoModeJob < ApplicationJob
   def demo_mode?
     return true if Setting.demo_mode
 
-    logger.warn("Zealot is not in demo mode, can not execute ResetForDemoModeJob.")
+    logger.warn("Zealyn is not in demo mode, can not execute ResetForDemoModeJob.")
     false
   end
 end

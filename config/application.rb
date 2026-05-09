@@ -42,7 +42,7 @@ module Zealot
 
     # Action mailer settings.
     config.action_mailer.default_options = {
-      from: ENV['ACTION_MAILER_DEFAULT_FROM'] || 'Zealot'
+      from: ENV['ACTION_MAILER_DEFAULT_FROM'] || 'Zealyn'
     }
 
     # Set the back-end for the cache.

@@ -167,7 +167,7 @@ en:
       archives: Archive uploaded binaries
       keep_uploads: Keep all builds
       misc: Misc
-      show_footer_version: Show Zealot version information in the footer.
+      show_footer_version: Show Zealyn version information in the footer.
       show_footer_openapi_endpoints: Show OpenAPI documentation endpoints in the footer.
       empty_value: Empty
       no_editable_key: Read only
@@ -202,7 +202,7 @@ en:
         new_version: "A new update is available "
         dev_new_version: Found new version (dev mode)
         messages:
-          file_permissions_tip: If you see a warning icon in the list above it means that the paths are not writable, which may cause Zealot to be unavailable or abnormal.
+          file_permissions_tip: If you see a warning icon in the list above it means that the paths are not writable, which may cause Zealyn to be unavailable or abnormal.
           path_not_exist: Path does not exist
           path_not_writable: Path is not writable
           path_not_readable: Path is not readable
@@ -246,7 +246,7 @@ en:
           pack: Packing
           remove_old: Remove old backups
           cleanup: Clean up
-        unknown_job_status: Unknown happened! Try again or report to zealot developer please.
+        unknown_job_status: Unknown happened! Try again or report to zealyn developer please.
         not_found:
           title: Not found any backup file
           body_html: Click the button to <i class="fa-regular fa-play-circle"></i> new a backup file.
@@ -500,7 +500,7 @@ en:
         one: Test device
         other: Test devices
       sync_devices_feature: Enable synchronize device
-      apple_team_link: https://zealot.ews.im/docs/user-guide/administrator/apple-team
+      apple_team_link: https://zealyn.ews.im/docs/user-guide/administrator/apple-team
       qrcode: QR Code
       scan_qrcode_with_any_supported_app: Use QR code scanner to install the app
       major_versions: :channels.show.major_versions
@@ -947,10 +947,10 @@ en:
           <li>Regenerating a signed certificate will not have any effect on the previous application, i. e. once expired it will always be expired, unless re-sign the app.</li>
         </ol>
     sponsor:
-      title: Support Zealot Project Development
+      title: Support Zealyn Project Development
       more_channels: More channels
-      intro: Zealot is an open-source project dedicated to providing mobile app developers with a simple and easy-to-use internal distribution platform. If you find Zealot helpful in your work, we welcome your support for our development through the following channels
-      outro: Your support is the driving force for our progress! Thank you for choosing Zealot as your app distribution solution.
+      intro: Zealyn is an open-source project dedicated to providing mobile app developers with a simple and easy-to-use internal distribution platform. If you find Zealyn helpful in your work, we welcome your support for our development through the following channels
+      outro: Your support is the driving force for our progress! Thank you for choosing Zealyn as your app distribution solution.
     tooltip:
       delete: Delete
     buttons:
@@ -1115,7 +1115,7 @@ en:
   user_mailer:
     omniauth_welcome_email:
       subject: Welcome to %{title}
-      default_password: "You authorized the third-party service to register Zealot, Here is the password:"
+      default_password: "You authorized the third-party service to register Zealyn, Here is the password:"
   devise:
     confirmations:
       new:

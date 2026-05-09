@@ -189,7 +189,7 @@ module ApplicationHelper # rubocop:disable Metrics/ModuleLength
   def powered_by
     safe_join([
       'Powered by', 
-      link_to('Zealot', 'https://zealot.ews.im')
+      link_to('Zealyn', 'https://github.com/yeyushengfanbj/qzb-zealot-develop')
     ], ' ')
   end
 

@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Zealot API",
+    "title": "Zealyn API",
     "version": "v1.4",
-    "description": "文档可能提供或没有提供测试接口的工具，便于快速测试，你还可以使用如下工具：\n\n- [cURL](https://curl.se/) (推荐，命令行工具)\n- [Bruno](https://www.usebruno.com/)\n- [Postman](https://www.postman.com/downloads/)\n- 任意浏览器，如果你不需要设置 headers 或请求主体\n\n准备好工具，你可以通过 `GET` 请求 {host}/api/version 可看到 Zealot 版本信息：\n\n```json\n{\n  \"version\": \"6.2.0\",\n  \"vcs_ref\": \"effe99c25b79fd55d3e1959ea3af0bcb6b75ba1d\",\n  \"build_date\": \"2024-05-23T06:04:48.989Z\"\n}\n```\n\n## 接口认证\n\n接口目前仅提供在用户密钥认证方式，参数是 `token`，请求接口时可在接口 query 或表单字段中传递此字段。\n\n```\nhttps://tryzealot.ews.im/api/users?token={token}\n```\n\n### 用户密钥\n\n用户密钥在[用户详情](https://zealot.ews.im/zh-Hans/docs/user-guide/user_settings)最底部找到。\n"
+    "description": "文档可能提供或没有提供测试接口的工具，便于快速测试，你还可以使用如下工具：\n\n- [cURL](https://curl.se/) (推荐，命令行工具)\n- [Bruno](https://www.usebruno.com/)\n- [Postman](https://www.postman.com/downloads/)\n- 任意浏览器，如果你不需要设置 headers 或请求主体\n\n准备好工具，你可以通过 `GET` 请求 {host}/api/version 可看到 Zealyn 版本信息：\n\n```json\n{\n  \"version\": \"6.2.0\",\n  \"vcs_ref\": \"effe99c25b79fd55d3e1959ea3af0bcb6b75ba1d\",\n  \"build_date\": \"2024-05-23T06:04:48.989Z\"\n}\n```\n\n## 接口认证\n\n接口目前仅提供在用户密钥认证方式，参数是 `token`，请求接口时可在接口 query 或表单字段中传递此字段。\n\n```\nhttps://tryzealot.ews.im/api/users?token={token}\n```\n\n### 用户密钥\n\n用户密钥在[用户详情](https://zealyn.ews.im/zh-Hans/docs/user-guide/user_settings)最底部找到。\n"
   },
   "servers": [
     {
@@ -2300,7 +2300,7 @@
           },
           "git_url": {
             "type": "string",
-            "example": "https://github.com/tryzealot/zealot"
+            "example": "https://github.com/tryzealot/zealyn"
           },
           "app": {
             "$ref": "#/components/schemas/App"
@@ -2423,7 +2423,7 @@
           },
           "git_url": {
             "type": "string",
-            "example": "https://github.com/tryzealot/zealot"
+            "example": "https://github.com/tryzealot/zealyn"
           },
           "has_password": {
             "type": "boolean",
@@ -2446,11 +2446,11 @@
           },
           "app_name": {
             "type": "string",
-            "example": "Zealot"
+            "example": "Zealyn"
           },
           "bundle_id": {
             "type": "string",
-            "example": "im.ews.zealot"
+            "example": "im.ews.zealyn"
           },
           "source": {
             "type": "string",
@@ -2466,7 +2466,7 @@
           },
           "ci_url": {
             "type": "string",
-            "example": "https://github.com/tryzealot/zealot/actions/runs/9211335126"
+            "example": "https://github.com/tryzealot/zealyn/actions/runs/9211335126"
           },
           "size": {
             "type": "integer",
@@ -2482,7 +2482,7 @@
           },
           "icon_url": {
             "type": "string",
-            "example": "https://tryzealot.ews.im/assets/zealot-icon-123e8c86.png"
+            "example": "https://tryzealot.ews.im/assets/zealyn-icon-123e8c86.png"
           },
           "install_url": {
             "type": "string",
@@ -2617,7 +2617,7 @@
           },
           "package_name": {
             "type": "string",
-            "example": "im.ews.zealot.android.example"
+            "example": "im.ews.zealyn.android.example"
           },
           "files": {
             "type": "array",
@@ -2664,7 +2664,7 @@
           },
           "bundle_id": {
             "type": "string",
-            "example": "im.ews.zealot.iphone.example"
+            "example": "im.ews.zealyn.iphone.example"
           },
           "name": {
             "type": "string",

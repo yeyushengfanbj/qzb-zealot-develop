@@ -198,7 +198,7 @@ zh-CN:
         new_version: "发现新版本 "
         dev_new_version: 发现新版本 (开发环境始终显示)
         messages:
-          file_permissions_tip: 如果你看到上面路径有显示红色异常图标那就是表面该路径无法写入可能会造成 Zealot 无法正常使用或发生异常情况
+          file_permissions_tip: 如果你看到上面路径有显示红色异常图标那就是表面该路径无法写入可能会造成 Zealyn 无法正常使用或发生异常情况
           path_not_exist: 路径不存在
           path_not_writable: 路径不可写
           path_not_readable: 路径不可读
@@ -492,7 +492,7 @@ zh-CN:
       changelog: 更新日志
       devices: 测试设备
       sync_devices_feature: 开启自动同步设备
-      apple_team_link: https://zealot.ews.im/zh-Hans/docs/user-guide/administrator/apple-team
+      apple_team_link: https://zealyn.ews.im/zh-Hans/docs/user-guide/administrator/apple-team
       qrcode: 二维码
       scan_qrcode_with_any_supported_app: 任何支持二维码识别的 App 均可
       major_versions: :'channels.show.major_versions'
@@ -819,7 +819,7 @@ zh-CN:
       register_device: 注册设备
       related_apple_keys_not_found: 没有发现苹果开发者账户
       related_apps_not_found_with_registered_device: 本设备是通过其他设备同步的方式被注册，但您的设备还没有关联的应用上传
-      related_apps_not_found: 当前设备可能还没有注册到苹果开发者或注册的应用没有上传到 Zealot
+      related_apps_not_found: 当前设备可能还没有注册到苹果开发者或注册的应用没有上传到 Zealyn
     edit:
       information: 关联信息
     install:
@@ -924,10 +924,10 @@ zh-CN:
           <li>重新生成签名证书不会对之前的应用有任何效果，也就是一旦过期永远都是过期，除非重新签名。</li>
         </ol>
     sponsor:
-      title: 支持 Zealot 项目发展
+      title: 支持 Zealyn 项目发展
       more_channels: 更多渠道
-      intro: Zealot 是一个开源项目，致力于为移动应用开发者提供一个简单易用的内部分发平台。如果你觉得 Zealot 对你的工作有所帮助，欢迎通过以下方式支持项目的正常维护和持续发展
-      outro: 感谢你选择 Zealot 作为你的应用分发解决方案
+      intro: Zealyn 是一个开源项目，致力于为移动应用开发者提供一个简单易用的内部分发平台。如果你觉得 Zealyn 对你的工作有所帮助，欢迎通过以下方式支持项目的正常维护和持续发展
+      outro: 感谢你选择 Zealyn 作为你的应用分发解决方案
     tooltip:
       delete: 删除
     buttons:
@@ -1131,7 +1131,7 @@ zh-CN:
   user_mailer:
     omniauth_welcome_email:
       subject: 欢迎使用 %{title}
-      default_password: 您已经使用第三方登录成功授权注册了 Zealot 账号，系统随机生成了默认的密码：
+      default_password: 您已经使用第三方登录成功授权注册了 Zealyn 账号，系统随机生成了默认的密码：
   devise:
     confirmations:
       new:

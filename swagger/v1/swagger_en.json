@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Zealot API",
+    "title": "Zealyn API",
     "version": "v1.4",
-    "description": "This documentation doesn't provide a way to test our API. In order to facilitate testing, we recommend the following tools:\n\n- [cURL](https://curl.se/) (recommended, command-line)\n- [Bruno](https://www.usebruno.com/)\n- [Postman](https://www.postman.com/downloads/)\n- Your web browser, if you don't need to send headers or a request body\n\nOnce you have a working client, you can test that it works by making a GET request to {host}/api/version:\n\n```json\n{\n  \"version\": \"6.2.0\",\n  \"vcs_ref\": \"effe99c25b79fd55d3e1959ea3af0bcb6b75ba1d\",\n  \"build_date\": \"2024-05-23T06:04:48.989Z\"\n}\n```\n\n## Authentication\n\nThis API only accepts one options for authentication: Personal access tokens.\nAll tokens are tied to a Zealot user and use the `token` query of the request.\n\nExample:\n\n```\nhttps://tryzealot.ews.im/api/users?token={token}\n```\n\n### Personal access tokens\n\nPersonal access tokens (PATs) can be found in from the [user settings](https://zealot.ews.im/docs/user-guide/user_settings).\n"
+    "description": "This documentation doesn't provide a way to test our API. In order to facilitate testing, we recommend the following tools:\n\n- [cURL](https://curl.se/) (recommended, command-line)\n- [Bruno](https://www.usebruno.com/)\n- [Postman](https://www.postman.com/downloads/)\n- Your web browser, if you don't need to send headers or a request body\n\nOnce you have a working client, you can test that it works by making a GET request to {host}/api/version:\n\n```json\n{\n  \"version\": \"6.2.0\",\n  \"vcs_ref\": \"effe99c25b79fd55d3e1959ea3af0bcb6b75ba1d\",\n  \"build_date\": \"2024-05-23T06:04:48.989Z\"\n}\n```\n\n## Authentication\n\nThis API only accepts one options for authentication: Personal access tokens.\nAll tokens are tied to a Zealyn user and use the `token` query of the request.\n\nExample:\n\n```\nhttps://tryzealot.ews.im/api/users?token={token}\n```\n\n### Personal access tokens\n\nPersonal access tokens (PATs) can be found in from the [user settings](https://zealyn.ews.im/docs/user-guide/user_settings).\n"
   },
   "servers": [
     {
@@ -2300,7 +2300,7 @@
           },
           "git_url": {
             "type": "string",
-            "example": "https://github.com/tryzealot/zealot"
+            "example": "https://github.com/tryzealot/zealyn"
           },
           "app": {
             "$ref": "#/components/schemas/App"
@@ -2423,7 +2423,7 @@
           },
           "git_url": {
             "type": "string",
-            "example": "https://github.com/tryzealot/zealot"
+            "example": "https://github.com/tryzealot/zealyn"
           },
           "has_password": {
             "type": "boolean",
@@ -2446,11 +2446,11 @@
           },
           "app_name": {
             "type": "string",
-            "example": "Zealot"
+            "example": "Zealyn"
           },
           "bundle_id": {
             "type": "string",
-            "example": "im.ews.zealot"
+            "example": "im.ews.zealyn"
           },
           "source": {
             "type": "string",
@@ -2466,7 +2466,7 @@
           },
           "ci_url": {
             "type": "string",
-            "example": "https://github.com/tryzealot/zealot/actions/runs/9211335126"
+            "example": "https://github.com/tryzealot/zealyn/actions/runs/9211335126"
           },
           "size": {
             "type": "integer",
@@ -2482,7 +2482,7 @@
           },
           "icon_url": {
             "type": "string",
-            "example": "https://tryzealot.ews.im/assets/zealot-icon-123e8c86.png"
+            "example": "https://tryzealot.ews.im/assets/zealyn-icon-123e8c86.png"
           },
           "install_url": {
             "type": "string",
@@ -2617,7 +2617,7 @@
           },
           "package_name": {
             "type": "string",
-            "example": "im.ews.zealot.android.example"
+            "example": "im.ews.zealyn.android.example"
           },
           "files": {
             "type": "array",
@@ -2664,7 +2664,7 @@
           },
           "bundle_id": {
             "type": "string",
-            "example": "im.ews.zealot.iphone.example"
+            "example": "im.ews.zealyn.iphone.example"
           },
           "name": {
             "type": "string",

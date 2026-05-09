@@ -9,7 +9,7 @@ zh-CN:
         - [Postman](https://www.postman.com/downloads/)
         - 任意浏览器，如果你不需要设置 headers 或请求主体
 
-        准备好工具，你可以通过 `GET` 请求 {host}/api/version 可看到 Zealot 版本信息：
+        准备好工具，你可以通过 `GET` 请求 {host}/api/version 可看到 Zealyn 版本信息：
 
         ```json
         {
@@ -29,7 +29,7 @@ zh-CN:
 
         ### 用户密钥
 
-        用户密钥在[用户详情](https://zealot.ews.im/zh-Hans/docs/user-guide/user_settings)最底部找到。
+        用户密钥在[用户详情](https://zealyn.ews.im/zh-Hans/docs/user-guide/user_settings)最底部找到。
     servers:
       description: 演示服务器
     security:

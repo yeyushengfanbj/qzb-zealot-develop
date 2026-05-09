@@ -84,7 +84,7 @@ Rails.application.configure do
   }
 
   config.action_dispatch.default_headers = {
-    'Server'                 => 'Zealot',
+    'Server'                 => 'Zealyn',
     'X-Frame-Options'        => 'sameorigin',
     'X-Content-Type-Options' => 'nosniff',
     'X-XSS-Protection'       => '1; mode=block',

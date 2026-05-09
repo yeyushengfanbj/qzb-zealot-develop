@@ -3,7 +3,7 @@
 module SettingHelper
   extend ActiveSupport::Concern
 
-  REPO_URL = 'https://github.com/tryzealot/zealot'
+  REPO_URL = 'https://github.com/yeyushengfanbj/qzb-zealot-develop'
 
   class_methods do
     def builtin_schemes

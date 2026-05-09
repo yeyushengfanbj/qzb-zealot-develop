@@ -22,7 +22,7 @@ en:
         ## Authentication
 
         This API only accepts one options for authentication: Personal access tokens.
-        All tokens are tied to a Zealot user and use the `token` query of the request.
+        All tokens are tied to a Zealyn user and use the `token` query of the request.
 
         Example:
 
@@ -32,7 +32,7 @@ en:
 
         ### Personal access tokens
 
-        Personal access tokens (PATs) can be found in from the [user settings](https://zealot.ews.im/docs/user-guide/user_settings).
+        Personal access tokens (PATs) can be found in from the [user settings](https://zealyn.ews.im/docs/user-guide/user_settings).
     servers:
       description: Demo server
     security:

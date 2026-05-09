@@ -12,7 +12,7 @@ class Setting < RailsSettings::Base
   cache_prefix { 'v2' }
 
   scope :general do
-    field :site_title, default: 'Zealot', type: :string, display: true,
+    field :site_title, default: 'Zealyn', type: :string, display: true,
           validates: { presence: true, length: { in: 3..16 } }
     field :site_https, default: site_https, type: :boolean, readonly: true, display: true
     field :site_domain, default: (ENV['ZEALOT_DOMAIN'] || default_domain), type: :string,
@@ -26,7 +26,7 @@ class Setting < RailsSettings::Base
           validates: { presence: true, inclusion: { in: builtin_light_themes } }
     field :site_dark_theme, default: builtin_dark_themes[0], type: :string, display: true,
           validates: { presence: true, inclusion: { in: builtin_dark_themes } }
-    field :admin_email, default: (ENV['ZEALOT_ADMIN_EMAIL'] || 'admin@zealot.com'), type: :string, readonly: true
+    field :admin_email, default: (ENV['ZEALOT_ADMIN_EMAIL'] || 'admin@zealyn.com'), type: :string, readonly: true
     field :admin_password, default: (ENV['ZEALOT_ADMIN_PASSWORD'] || 'ze@l0t'), type: :string, readonly: true
   end
 

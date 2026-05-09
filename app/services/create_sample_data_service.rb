@@ -866,8 +866,8 @@ class CreateSampleDataService
       apple_key.save(validate: false)
       apple_key.create_team(
         team_id: 'PZYM8XX95Q',
-        name: 'Zealot Team',
-        display_name: 'Zealot Developer Team (Alias Name)',
+        name: 'Zealyn Team',
+        display_name: 'Zealyn Developer Team (Alias Name)',
       )
     end
 

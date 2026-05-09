@@ -87,7 +87,7 @@ class Backup < ApplicationRecord
     data << "#{enabled_apps.size} apps" if enabled_apps
 
     {
-      description: "Backup zealot #{data.join(' | ')} data",
+      description: "Backup zealyn #{data.join(' | ')} data",
       cron: Fugit.parse(schedule).to_cron_s,
       class:'BackupJob',
       args: [ id ]
