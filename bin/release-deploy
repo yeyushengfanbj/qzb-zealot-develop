@@ -66,8 +66,8 @@ replace_image_line "$ENV_FILE"
 replace_image_line "$ENV_LOCAL_FILE"
 
 echo "Pulling and recreating service..."
-docker compose -f "$COMPOSE_FILE" pull zealot
-docker compose -f "$COMPOSE_FILE" up -d --force-recreate zealot
+docker compose -f "$COMPOSE_FILE" pull zealyn
+docker compose -f "$COMPOSE_FILE" up -d --force-recreate zealyn
 
 echo "Waiting for health check..."
 ok=0

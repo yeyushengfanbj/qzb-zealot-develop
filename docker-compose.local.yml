@@ -7,9 +7,9 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: zealot
     volumes:
-      - zealot-postgres:/var/lib/postgresql/data
+      - zealyn-postgres:/var/lib/postgresql/data
 
-  zealot:
+  zealyn:
     image: ${ZEALOT_IMAGE:-ghcr.io/tryzealot/zealot:nightly}
     restart: unless-stopped
     depends_on:
@@ -19,13 +19,13 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - zealot-uploads:/app/public/uploads
-      - zealot-backup:/app/public/backup
+      - zealyn-uploads:/app/public/uploads
+      - zealyn-backup:/app/public/backup
 
 volumes:
-  zealot-postgres:
+  zealyn-postgres:
     name: zealyn-develop-postgres
-  zealot-uploads:
+  zealyn-uploads:
     name: zealyn-develop-uploads
-  zealot-backup:
+  zealyn-backup:
     name: zealyn-develop-backup
