@@ -24,5 +24,8 @@ services:
 
 volumes:
   zealot-postgres:
+    name: zealyn-develop-postgres
   zealot-uploads:
+    name: zealyn-develop-uploads
   zealot-backup:
+    name: zealyn-develop-backup
