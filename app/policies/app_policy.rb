@@ -29,6 +29,10 @@ class AppPolicy < ApplicationPolicy
     admin? || app_owner?
   end
 
+  def download_analytics?
+    show?
+  end
+
   def update_owner?
     admin? || app_owner?
   end

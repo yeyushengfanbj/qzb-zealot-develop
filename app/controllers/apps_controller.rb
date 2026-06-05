@@ -4,12 +4,12 @@ class AppsController < ApplicationController
   include AppArchived
 
   before_action :authenticate_user! unless Setting.guest_mode
-  before_action :set_app, only: %i[show edit update destroy new_owner update_owner]
+  before_action :set_app, only: %i[show edit update destroy new_owner update_owner download_analytics]
   before_action :set_selected_schemes_and_channels, only: %i[edit]
   before_action :process_scheme_and_channel, only: %i[create]
   before_action :set_owner, only: %i[ new_owner update_owner ]
 
-  before_action -> { set_app_breadcrumbs(app: @app) }, only: %i[show edit update destroy new_owner update_owner]
+  before_action -> { set_app_breadcrumbs(app: @app) }, only: %i[show edit update destroy new_owner update_owner download_analytics]
 
   def index
     @title = t('.title')
@@ -21,6 +21,14 @@ class AppsController < ApplicationController
 
   def show
     @title = @app.name
+  end
+
+  def download_analytics
+    @period = download_analytics_period
+    @title = t('.title', app: @app.name)
+    @buckets = download_analytics_buckets(@period)
+    @series = download_analytics_series(@app, @buckets, @period)
+    @max_downloads = @series.flat_map { |item| item[:values].map { |value| value[:count] } }.max.to_i
   end
 
   def new
@@ -165,6 +173,100 @@ class AppsController < ApplicationController
   def set_app
     @app = App.find(params[:id])
     authorize @app
+  end
+
+  def download_analytics_period
+    period = params[:period].to_s
+    %w[day month year].include?(period) ? period : 'day'
+  end
+
+  def download_analytics_buckets(period)
+    today = Time.zone.today
+
+    case period
+    when 'month'
+      first_month = today.beginning_of_month << 11
+      12.times.map { |index| first_month >> index }
+    when 'year'
+      first_year = Date.new(today.year - 4, 1, 1)
+      5.times.map { |index| first_year >> (index * 12) }
+    else
+      first_day = today - 13.days
+      14.times.map { |index| first_day + index.days }
+    end
+  end
+
+  def download_analytics_series(app, buckets, period)
+    counts = download_counts_by_device_type_and_bucket(app, buckets, period)
+
+    app_download_device_types(app).map do |device_type|
+      values = buckets.map do |bucket|
+        key = download_bucket_key(bucket, period)
+        { label: download_bucket_label(bucket, period), count: counts.fetch([device_type, key], 0) }
+      end
+
+      { device_type: device_type, total: values.sum { |value| value[:count] }, values: values }
+    end
+  end
+
+  def app_download_device_types(app)
+    Channel
+      .unscoped
+      .joins(:scheme)
+      .where(schemes: { app_id: app.id })
+      .distinct
+      .pluck(Arel.sql('channels.device_type'))
+      .sort
+  end
+
+  def download_counts_by_device_type_and_bucket(app, buckets, period)
+    unit = { 'day' => 'day', 'month' => 'month', 'year' => 'year' }.fetch(period)
+    bucket_sql = Arel.sql("DATE_TRUNC('#{unit}', release_downloads.created_at)")
+
+    ReleaseDownload
+      .joins(release: { channel: :scheme })
+      .where(schemes: { app_id: app.id }, created_at: download_bucket_range(buckets, period))
+      .group('channels.device_type', bucket_sql)
+      .count
+      .each_with_object({}) do |((device_type, bucket_time), count), result|
+        result[[device_type, download_bucket_key(bucket_time.in_time_zone.to_date, period)]] = count
+      end
+  end
+
+  def download_bucket_range(buckets, period)
+    first_bucket = buckets.first
+    last_bucket = buckets.last
+
+    case period
+    when 'month'
+      first_bucket.beginning_of_month.beginning_of_day..last_bucket.end_of_month.end_of_day
+    when 'year'
+      first_bucket.beginning_of_year.beginning_of_day..last_bucket.end_of_year.end_of_day
+    else
+      first_bucket.beginning_of_day..last_bucket.end_of_day
+    end
+  end
+
+  def download_bucket_key(bucket, period)
+    case period
+    when 'month'
+      bucket.strftime('%Y-%m')
+    when 'year'
+      bucket.strftime('%Y')
+    else
+      bucket.strftime('%Y-%m-%d')
+    end
+  end
+
+  def download_bucket_label(bucket, period)
+    case period
+    when 'month'
+      bucket.strftime('%Y-%m')
+    when 'year'
+      bucket.strftime('%Y')
+    else
+      bucket.strftime('%m/%d')
+    end
   end
 
   def app_params

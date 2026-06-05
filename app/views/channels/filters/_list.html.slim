@@ -15,6 +15,7 @@
               th = t('channels.show.release_type')
             th = t('channels.show.git_branch')
             th class="hidden sm:block" = t('channels.show.git_commit')
+            th = t('channels.show.downloads_count')
             th = t('channels.show.uploaded_at')
         tbody
           - releases.each_with_index do |release, index|
@@ -40,6 +41,8 @@
               td class="hidden sm:block"
                 span class="opacity-70" = git_commit_url(release.channel.git_url, release.git_commit) || '-'
               td
+                span class="opacity-70" = release.downloads_count
+              td
                 div class="d-tooltip d-tooltip-left" data-tip=l(release.created_at, format: :nice)
                   span class="opacity-80" = time_ago_in_words(release.created_at)
 
@@ -60,4 +63,3 @@
 - else
   .card-body
     = t('channels.show.empty_version')
-

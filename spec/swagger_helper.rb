@@ -170,6 +170,7 @@ RSpec.configure do |config|
               device_type: { type: :string, example: 'iPhone' },
               icon_url: { type: :string, example: 'https://tryzealot.ews.im/assets/zealot-icon-123e8c86.png' },
               install_url: { type: :string, example: 'https://tryzealot.ews.im/M9DJa/681/download' },
+              downloads_count: { type: :integer, format: :int32, example: 42 },
               changelog: { type: :array, items: { '$ref': '#/components/schemas/ReleaseChangelog' }},
               text_changelog: { type: :string, example: '- bump 1.1\n-n fixes bugs' },
               custom_fields: { type: :array, items: { '$ref': '#/components/schemas/ReleaseCustomField' }},

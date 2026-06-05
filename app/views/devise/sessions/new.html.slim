@@ -6,6 +6,14 @@ div class="d-section mx-auto max-w-6xl px-4 md:px-6"
     div class="col-span-2 order-2 md:order-1"
       == render 'devise/shared/intro'
     div class="col-span-3 order-1 md:order-2"
+      - if flash[:alert].present? || flash[:warn].present? || flash[:notice].present?
+        div class="mb-3 space-y-2"
+          - flash.each do |type, message|
+            - alert_class = { 'notice' => 'd-alert-success', 'warn' => 'd-alert-warning', 'alert' => 'd-alert-error' }[type.to_s] || 'd-alert-info'
+            - icon = { 'notice' => 'circle-check', 'warn' => 'circle-exclamation', 'alert' => 'circle-xmark' }[type.to_s] || 'circle-info'
+            div class="d-alert #{alert_class}" role="alert"
+              i class="fa-solid fa-#{icon}"
+              div = message
       div.d-tabs.d-tabs-box[
         data-controller='tab-switch'
         data-tab-switch-default-tab-value='normal'

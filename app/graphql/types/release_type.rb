@@ -10,6 +10,7 @@ module Types
     field :build_version, String, null: false
     field :icon_url, String, null: false
     field :download_url, String, null: false
+    field :downloads_count, Int, null: false
     field :changelog, String, null: true
   end
 end

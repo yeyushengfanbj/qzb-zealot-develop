@@ -12,23 +12,13 @@ div class="d-navbar border-base-300 border-b shadow-none transition-colors"
     div class="d-navbar-center"
       == render 'layouts/brand_logo', site_title: Setting.site_title
   div class="d-navbar-end flex-1 md:flex-3 gap-1"
-    - unless devise_page?
-      / Mobile: circle button
-      .md:hidden
-        button.d-btn.d-btn-soft.d-btn-circle.s-9 data-action='global#showSponsorModal'
-          i.fa-regular.fa-heart.text-red-500
-      / Desktop: default button with text
-      .hidden.md:block
-        button.d-btn.d-btn-soft data-action='global#showSponsorModal'
-          i.fa-regular.fa-heart.text-red-500
-          = t('donate')
     - if user_signed_in?
       div class="d-dropdown d-dropdown-end"
         .d-avatar.d-avatar-placeholder.hover:cursor-pointer tabindex="0" role="button"
           .bg-secondary.text-neutral-content.w-9.rounded-full.hover:bg-secondary/70
             - initials = current_user.username.split.map { |name| name[0].upcase }.join[0,2]
             span = initials
-        ul class="d-dropdown-content d-menu bg-base-200 rounded-box z-1 w-32 p-2 shadow-sm"
+        ul class="d-dropdown-content d-menu bg-base-200 rounded-box z-10 w-32 p-2 shadow-sm"
           li = link_to t('user_profile'), edit_user_registration_path
           li = button_to t('log_out'), destroy_user_session_path, method: :delete
     - elsif !devise_page?

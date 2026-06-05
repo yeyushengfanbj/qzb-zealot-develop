@@ -39,6 +39,9 @@
         div class="d-tooltip" data-tip=t('releases.show.filesize')
           i.fa-solid.fa-weight class="mr-1"
           = " #{number_to_human_size(release.file.size)}"
+      div class="d-tooltip" data-tip=t('releases.show.downloads_count')
+        i.fa-solid.fa-download class="mr-1"
+        = release.downloads_count
       div class="d-tooltip" data-tip=t('releases.show.uploaded_at', date: l(release.created_at, format: :nice))
         i.fa-solid.fa-calendar class="mr-1"
         = time_ago_in_words(release.created_at)

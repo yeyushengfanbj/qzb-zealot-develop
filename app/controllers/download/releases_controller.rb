@@ -17,6 +17,15 @@ class Download::ReleasesController < ApplicationController
   end
 
   def download
+    return render_not_found_entity_response unless File.exist?(@release.file.path.to_s)
+
+    Release.increment_counter(:downloads_count, @release.id)
+    @release.downloads.create!(
+      user: current_user,
+      ip: request.remote_ip,
+      user_agent: request.user_agent.to_s.truncate(255)
+    )
+
     # 触发 web_hook
     @release.channel.perform_web_hook('download_events', current_user&.id)
 
@@ -39,5 +48,3 @@ class Download::ReleasesController < ApplicationController
     @release = Release.find(params[:id])
   end
 end
-
-

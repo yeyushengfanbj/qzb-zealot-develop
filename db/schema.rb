@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_18_081921) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_04_093000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -277,6 +277,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_18_081921) do
     t.datetime "created_at", null: false
     t.jsonb "custom_fields", default: [], null: false
     t.string "device_type"
+    t.integer "downloads_count", default: 0, null: false
     t.string "file"
     t.string "git_commit"
     t.string "icon"
@@ -293,6 +294,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_18_081921) do
     t.index ["release_version", "build_version"], name: "index_releases_on_release_version_and_build_version"
     t.index ["source"], name: "index_releases_on_source"
     t.index ["version"], name: "index_releases_on_version"
+  end
+
+  create_table "release_downloads", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "ip"
+    t.bigint "release_id", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.string "user_agent"
+    t.index ["created_at"], name: "index_release_downloads_on_created_at"
+    t.index ["release_id"], name: "index_release_downloads_on_release_id"
+    t.index ["user_id"], name: "index_release_downloads_on_user_id"
   end
 
   create_table "schemes", force: :cascade do |t|
@@ -396,6 +409,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_18_081921) do
   add_foreign_key "debug_files", "apps", on_delete: :cascade
   add_foreign_key "metadata", "releases", on_delete: :cascade
   add_foreign_key "metadata", "users", on_delete: :cascade
+  add_foreign_key "release_downloads", "releases"
+  add_foreign_key "release_downloads", "users"
   add_foreign_key "releases", "channels", on_delete: :cascade
   add_foreign_key "schemes", "apps", on_delete: :cascade
   add_foreign_key "user_providers", "users", on_delete: :cascade

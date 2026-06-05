@@ -25,10 +25,14 @@ zh-CN:
         email: 邮箱
         role: 权限
         status: 状态
+        activation: 生效状态
         last_login_time: 最后登录时间
         activated: 已激活
         locked: 已停用
         inactive: 未激活
+        activate_now: 立即生效
+        activation_activated: 已生效
+        activation_failed: 未生效
         never_logged_in: 从未登录
         destroy_user: 删除
         destroy_user_confirm: 你确定要删除【%{user}】用户？
@@ -47,6 +51,13 @@ zh-CN:
         message: "%{user}用户已变更为停用状态"
       unlock:
         message: "%{user}用户已变更为启用状态"
+      create:
+        message: "%{user}用户已创建成功，请联系该人员通过邮件进行确认。"
+      activate:
+        success: "%{user}用户已立即生效"
+        already_activated: "%{user}用户已生效"
+        failure: "%{user}用户未能生效：%{reason}"
+        unknown_error: 未知错误
       resend_confirmation:
         message: "已重新发送确认邮件至%{user}用户"
     web_hooks:
@@ -320,6 +331,7 @@ zh-CN:
       disabled_new_build_callout: 已关闭新版本提示窗
       enabled_new_build_callout: 已开启新版本提示窗
       total_builds: 上传版本数
+      download_analytics: 下载统计
       not_found_channel: 没有发现任何渠道
       not_found_scheme:
         title: 没有发现任何应用类型
@@ -347,6 +359,17 @@ zh-CN:
     new_owner:
       title: 转移拥有者
       user_hint: 转移至其他成员，你会失去该应用的所有权限！
+    download_analytics:
+      title: "%{app} 下载统计"
+      back: 返回应用
+      hint: 仅统计上线后的真实文件下载请求
+      total: "总计 %{count}"
+      empty: 暂无应用平台
+      empty_device_type: 当前时间范围内暂无下载
+      periods:
+        day: 按天
+        month: 按月
+        year: 按年
     archives:
       title: 已归档应用
       index:
@@ -414,6 +437,7 @@ zh-CN:
       build_version: 开发版本
       git_branch: 分支
       git_commit: 提交哈希值
+      downloads_count: 下载次数
       version: 上传版本
       release_type: 打包类型
       uploaded_at: 上传时间
@@ -470,6 +494,7 @@ zh-CN:
       native_codes: 原生架构
       multi_native_codes: 多架构
       filesize: 文件体积
+      downloads_count: 下载次数
       uploaded_at: 上传时间 %{date}
       git_branch: Git 分支
       git_commit: Git 提交 SHA

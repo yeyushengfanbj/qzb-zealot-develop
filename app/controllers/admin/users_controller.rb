@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::UsersController < ApplicationController
-  before_action :set_user, only: %i[edit update destroy lock unlock resend_confirmation]
+  before_action :set_user, only: %i[edit update destroy lock unlock activate resend_confirmation]
 
   def index
     @users = User.all.order(id: :asc)
@@ -20,7 +20,7 @@ class Admin::UsersController < ApplicationController
 
     return render :new, status: :unprocessable_entity unless @user.save
 
-    flash.now[:notice] = t('activerecord.success.create', key: t('admin.users.title'))
+    flash.now[:notice] = t('.message', user: @user.username)
     respond_to do |format|
       format.html { redirect_to admin_users_path }
       format.turbo_stream
@@ -89,6 +89,33 @@ class Admin::UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to edit_admin_user_path(@user) }
       format.turbo_stream
+    end
+  end
+
+  def activate
+    if @user.confirmed?
+      flash.now[:notice] = t('.already_activated', user: @user.username)
+    else
+      @user.confirm
+      if @user.confirmed?
+        flash.now[:notice] = t('.success', user: @user.username)
+      else
+        @activation_error = @user.errors.full_messages.to_sentence.presence || t('.unknown_error')
+        flash.now[:alert] = t('.failure', user: @user.username, reason: @activation_error)
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to admin_users_path }
+      format.turbo_stream
+    end
+  rescue StandardError => e
+    @activation_error = "#{e.class}: #{e.message}"
+    flash.now[:alert] = t('.failure', user: @user.username, reason: @activation_error)
+
+    respond_to do |format|
+      format.html { redirect_to admin_users_path }
+      format.turbo_stream { render :activate, status: :unprocessable_entity }
     end
   end
 

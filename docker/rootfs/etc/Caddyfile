@@ -29,7 +29,7 @@ reverse_proxy @zealot {
 	# health_interval 2s
 	# health_timeout 10s
 
-	header_up X-Forwarded-Proto https
+	header_up X-Forwarded-Proto {scheme}
 
 	@accel header X-Accel-Redirect *
 	handle_response @accel {

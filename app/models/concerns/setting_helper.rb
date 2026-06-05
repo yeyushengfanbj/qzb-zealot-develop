@@ -80,7 +80,9 @@ module SettingHelper
     end
 
     def site_https
-      Rails.env.production? || ENV['ZEALOT_USE_HTTPS'].present?
+      return to_bool(ENV['ZEALOT_USE_HTTPS']) if ENV.key?('ZEALOT_USE_HTTPS')
+
+      Rails.env.production?
     end
 
     def site_configs

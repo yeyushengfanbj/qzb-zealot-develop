@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :apps do
     member do
       get :new_owner
+      get :download_analytics
       put :update_owner
     end
 
@@ -138,6 +139,7 @@ Rails.application.routes.draw do
       resources :settings
       resources :users, except: :show do
         member do
+          put :activate
           put :lock
           put :resend_confirmation
           delete :unlock

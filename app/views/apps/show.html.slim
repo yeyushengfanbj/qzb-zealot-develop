@@ -12,6 +12,9 @@
   - if current_user&.manage?(app: @app)
     .d-join
       - if !@app.archived
+        = button_link_to '', download_analytics_app_path(@app), 'chart-column', \
+          class: 'd-join-item d-btn d-tooltip', \
+          data: { tip: t('apps.show.download_analytics'), turbo_frame: '_top' }
         = button_link_to '', new_app_scheme_path(@app), 'plus-square', \
           class: 'd-join-item d-btn d-tooltip', \
           data: { tip: t('apps.show.new_scheme'), turbo_frame: :modal }

@@ -1,0 +1,53 @@
+- content_for :title do
+  = @title
+
+- content_for :section_title do
+  = @title
+
+- content_for :section_rightpanel do
+  .d-join
+    - %w[day month year].each do |period|
+      = link_to t("apps.download_analytics.periods.#{period}"), download_analytics_app_path(@app, period: period), \
+        class: "d-btn d-join-item #{@period == period ? 'd-btn-primary' : 'd-btn-ghost'}"
+
+.space-y-4
+  .flex.flex-wrap.items-center.justify-between.gap-3
+    = link_to app_path(@app), class: 'd-btn d-btn-ghost' do
+      i.fa-solid.fa-arrow-left
+      = t('apps.download_analytics.back')
+    .text-sm.opacity-70
+      = t('apps.download_analytics.hint')
+
+  - if @series.present?
+    .grid.grid-cols-1.gap-4
+      - @series.each do |item|
+        - values = item[:values]
+        section.card
+          .card-header
+            h2.card-title
+              = device_icon(item[:device_type])
+              = platform_name(item[:device_type])
+            .card-tools
+              span.d-badge.d-badge-primary = t('apps.download_analytics.total', count: item[:total])
+          .card-body
+            - if item[:total].positive?
+              .flex.items-end.gap-2.overflow-x-auto.min-h-64.pb-2
+                - values.each do |value|
+                  - height = @max_downloads.positive? ? ((value[:count].to_f / @max_downloads) * 12).round(2) : 0
+                  - height = [height, 0.5].max if value[:count].positive?
+                  .flex.min-w-12.flex-1.flex-col.items-center.justify-end.gap-2
+                    .text-xs.font-semibold = value[:count]
+                    .d-tooltip.d-tooltip-top.w-full data-tip="#{value[:label]}: #{value[:count]}"
+                      div[
+                        class="mx-auto w-7 rounded-t bg-primary transition-all hover:bg-secondary"
+                        style="height: #{height}rem"
+                      ]
+                    .text-xs.opacity-70.whitespace-nowrap = value[:label]
+            - else
+              .py-8.text-center.opacity-70
+                i.fa-solid.fa-chart-column.text-3xl.mb-3
+                div = t('apps.download_analytics.empty_device_type')
+  - else
+    .py-10.text-center.opacity-70
+      i.fa-solid.fa-chart-column.text-4xl.mb-3
+      div = t('apps.download_analytics.empty')

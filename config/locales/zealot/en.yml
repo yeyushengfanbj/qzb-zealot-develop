@@ -25,10 +25,14 @@ en:
         email: E-mail
         role: Role
         status: Status
+        activation: Activation
         last_login_time: Last login time
         activated: Activated
         locked: Locked
         inactive: Inactive
+        activate_now: Activate now
+        activation_activated: Activated
+        activation_failed: Failed
         never_logged_in: Never logged in
         destroy_user: Destroy
         destroy_user_confirm: Are you sure you want to delete the `%{user}` user?
@@ -47,6 +51,13 @@ en:
         message: "User %{user} has been locked."
       unlock:
         message: "User %{user} has been unlocked."
+      create:
+        message: "User %{user} has been created. Please ask this person to confirm the account by email."
+      activate:
+        success: "User %{user} has been activated."
+        already_activated: "User %{user} is already activated."
+        failure: "Failed to activate user %{user}: %{reason}"
+        unknown_error: Unknown error
       resend_confirmation:
         message: "Re-sent the confirmation email to user %{user}."
     web_hooks:
@@ -326,6 +337,7 @@ en:
       disabled_new_build_callout: Disabled new build callout
       enabled_new_build_callout: Enabled new build callout
       total_builds: Total builds
+      download_analytics: Download analytics
       not_found_channel: Not found any channel.
       not_found_scheme:
         title: Not found any scheme.
@@ -353,6 +365,17 @@ en:
     new_owner:
       title: Switch to new owner
       user_hint: You will be remove from this app after select the other user!
+    download_analytics:
+      title: "%{app} Download analytics"
+      back: Back to app
+      hint: Only real file downloads after this feature was enabled are included.
+      total: "Total %{count}"
+      empty: No app platforms found.
+      empty_device_type: No downloads in this range.
+      periods:
+        day: Day
+        month: Month
+        year: Year
     archives:
       title: Archived App
       index:
@@ -420,6 +443,7 @@ en:
       build_version: Build version
       git_branch: Branch
       git_commit: Commit SHA
+      downloads_count: Downloads
       version: Build
       release_type: Release type
       uploaded_at: Uploaded time
@@ -476,6 +500,7 @@ en:
       native_codes: Native codes
       multi_native_codes: Universal
       filesize: File size
+      downloads_count: Downloads
       uploaded_at: Uploaded time %{date}
       git_branch: Git branch
       git_commit: Git commit SHA

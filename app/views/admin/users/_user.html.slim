@@ -9,11 +9,22 @@
     = link_to user.email, edit_admin_user_path(user), data: { turbo_frame: '_top' }
   div class="col-span-4 md:col-span-2" 
     = user.username.presence || '-'
-  div class="col-span-2"
+  div class="col-span-2 md:col-span-1"
     = user.role_name
   div class="col-span-2 hidden md:block" 
     .d-badge.d-badge-sm class="d-badge-#{color}" = text
-  div class="col-span-3 hidden md:block text-right" 
+  div class="col-span-2 hidden md:block"
+    - if user.confirmed?
+      button.d-btn.d-btn-xs.d-btn-disabled = t('admin.users.index.activation_activated')
+    - elsif local_assigns[:activation_error].present?
+      button.d-btn.d-btn-xs.d-btn-error[
+        type="button"
+        onclick="alert(#{j(local_assigns[:activation_error]).to_json})"
+      ] = t('admin.users.index.activation_failed')
+    - else
+      = button_link_to t('admin.users.index.activate_now'), activate_admin_user_path(user), nil, \
+        class: 'd-btn-xs d-btn-primary', data: { turbo_method: :put }
+  div class="col-span-2 hidden md:block text-right"
     - if user.last_sign_in_at
       span.d-tooltip.d-tooltip-left data-tip=l(user.last_sign_in_at, format: :nice) 
         = time_ago_in_words(user.last_sign_in_at)
