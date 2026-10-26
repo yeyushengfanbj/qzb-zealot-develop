@@ -1,6 +1,7 @@
 param(
   [string]$ConfigPath = ".\\customer.release.env",
-  [switch]$SkipLogin
+  [switch]$SkipLogin,
+  [switch]$SkipPull
 )
 
 $ErrorActionPreference = "Stop"
@@ -81,16 +82,27 @@ function Invoke-Deploy {
   param(
     [string]$DeployDir,
     [string]$ServerPort,
-    [string]$HealthPath
+    [string]$HealthPath,
+    [bool]$SkipImagePull
   )
 
   Push-Location $DeployDir
   try {
-    Write-Step "Pulling image"
-    docker compose -f docker-compose.local.yml pull zealyn
+    if (-not $SkipImagePull) {
+      Write-Step "Pulling image"
+      docker compose -f docker-compose.local.yml pull zealyn
+    }
+    else {
+      Write-Step "Skip pull enabled; using local image cache"
+    }
 
     Write-Step "Recreating service"
-    docker compose -f docker-compose.local.yml up -d --force-recreate zealyn
+    if ($SkipImagePull) {
+      docker compose -f docker-compose.local.yml up -d --force-recreate --pull never zealyn
+    }
+    else {
+      docker compose -f docker-compose.local.yml up -d --force-recreate zealyn
+    }
 
     Write-Step "Service status"
     docker compose -f docker-compose.local.yml ps
@@ -168,7 +180,7 @@ if ($config.ContainsKey("API_BASE_URL") -and -not [string]::IsNullOrWhiteSpace($
   Set-Or-Add-EnvLine -FilePath $envLocalFile -Key "API_BASE_URL" -Value $config["API_BASE_URL"]
 }
 
-Invoke-Deploy -DeployDir $deployDir -ServerPort $serverPort -HealthPath $healthPath
+Invoke-Deploy -DeployDir $deployDir -ServerPort $serverPort -HealthPath $healthPath -SkipImagePull:$SkipPull
 
 Write-Step "Done"
 Write-Host "Deploy success with image: $image" -ForegroundColor Green

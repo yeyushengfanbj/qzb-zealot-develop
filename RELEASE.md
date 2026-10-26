@@ -148,3 +148,46 @@ grep '^ZEALOT_IMAGE=' .env .env.local
 - 限定触发分支
 - 增加缓存（`cache-from/cache-to: type=gha`）
 - 非必须时只构建单架构
+
+## 慢网发布模式（推荐）
+
+如果服务器网络较慢，建议使用“本地已有镜像 + 跳过拉取”模式。
+
+### Linux/macOS 服务器
+
+先把镜像预热到服务器本地（仅首次或版本变更时）：
+
+```bash
+docker pull ghcr.io/yeyushengfanbj/qzb-zealot-develop:sha-<12位SHA>
+```
+
+发布时跳过拉取：
+
+```bash
+RELEASE_SKIP_PULL=1 bin/release-deploy sha-<12位SHA>
+```
+
+### Windows 服务器
+
+若已提前 `docker pull` 或 `docker load` 到本机，发布时可跳过拉取：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\bin\windows-deploy.ps1 -ConfigPath .\customer.release.env -SkipPull
+```
+
+### 离线/弱网补充（Windows 虚拟机特别有效）
+
+如果你在 Mac 开发机网络更好，可在 Mac 拉镜像后导出，复制到 Windows 再导入：
+
+```bash
+docker pull ghcr.io/yeyushengfanbj/qzb-zealot-develop:sha-<12位SHA>
+docker save ghcr.io/yeyushengfanbj/qzb-zealot-develop:sha-<12位SHA> -o zealyn-image.tar
+```
+
+Windows 导入：
+
+```powershell
+docker load -i .\zealyn-image.tar
+```
+
+然后执行 `-SkipPull` 发布。

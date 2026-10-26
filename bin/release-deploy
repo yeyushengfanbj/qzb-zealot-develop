@@ -17,6 +17,9 @@ Examples:
   bin/release-deploy 4d8c98ee8097
   bin/release-deploy sha-4d8c98ee8097
   bin/release-deploy latest
+
+Optional:
+  RELEASE_SKIP_PULL=1 bin/release-deploy sha-4d8c98ee8097
 EOF
 }
 
@@ -65,9 +68,14 @@ replace_image_line() {
 replace_image_line "$ENV_FILE"
 replace_image_line "$ENV_LOCAL_FILE"
 
-echo "Pulling and recreating service..."
-docker compose -f "$COMPOSE_FILE" pull zealyn
-docker compose -f "$COMPOSE_FILE" up -d --force-recreate zealyn
+echo "Recreating service..."
+if [[ "${RELEASE_SKIP_PULL:-0}" == "1" ]]; then
+  echo "Skip pull enabled; using local image cache"
+  docker compose -f "$COMPOSE_FILE" up -d --force-recreate --pull never zealyn
+else
+  docker compose -f "$COMPOSE_FILE" pull zealyn
+  docker compose -f "$COMPOSE_FILE" up -d --force-recreate zealyn
+fi
 
 echo "Waiting for health check..."
 ok=0
